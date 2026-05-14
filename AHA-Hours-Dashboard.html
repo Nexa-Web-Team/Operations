@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AHA Hours Dashboard — NEXA</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f2f4f7; --surface: #ffffff; --surface2: #f0f1f4; --border: #e2e5ec;
+  --text: #1a1d23; --muted: #7a8394; --accent: #c8102e; --accent-light: #fdf0f2;
+}
+body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--text); min-height: 100vh; }
+
+/* TOPBAR */
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; background:var(--surface); border-bottom:1px solid var(--border); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+.brand { font-size:13px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); }
+.topbar-meta { font-size:11.5px; color:var(--muted); }
+
+/* HERO */
+.hero { background:var(--surface); padding:36px 40px 32px; border-bottom:1px solid var(--border); }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; margin-bottom:36px; }
+.hero-title { font-size:36px; font-weight:800; line-height:1.1; letter-spacing:-0.5px; }
+.hero-title span { color:var(--accent); }
+.hero-sub { font-size:13px; color:var(--muted); margin-top:6px; }
+.kpi-row { display:flex; gap:8px; flex-wrap:wrap; }
+.kpi { background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:14px 20px; min-width:105px; text-align:center; }
+.kpi-value { font-size:21px; font-weight:700; letter-spacing:-0.3px; }
+.kpi-value.red { color:var(--accent); }
+.kpi-label { font-size:9.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-top:3px; }
+
+/* CHART AREA */
+.section-label { font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.timeline-wrap { display:grid; grid-template-columns:1fr 210px; gap:28px; align-items:start; }
+.hbar-chart { display:flex; flex-direction:column; gap:8px; }
+.hbar-row { display:grid; grid-template-columns:36px 1fr 52px; align-items:center; gap:10px; padding:6px 10px; border-radius:7px; border:1.5px solid transparent; cursor:pointer; transition:background 0.15s, border-color 0.15s; }
+.hbar-row:hover { background:var(--surface2); }
+.hbar-row.active { background:var(--accent-light); border-color:var(--accent); }
+.hbar-mlabel { font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; text-align:right; }
+.hbar-row.active .hbar-mlabel { color:var(--accent); }
+.hbar-track { height:20px; background:var(--surface2); border-radius:4px; overflow:hidden; display:flex; gap:1.5px; }
+.hbar-seg { height:100%; min-width:3px; }
+.hbar-val { font-size:11px; font-weight:700; text-align:right; white-space:nowrap; }
+.chart-legend { display:flex; flex-direction:column; gap:8px; padding-top:26px; }
+.chart-legend-item { display:flex; align-items:center; gap:9px; font-size:12px; color:var(--text); }
+.chart-legend-swatch { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
+
+/* BODY */
+.body-grid { display:grid; grid-template-columns:1fr 320px; }
+.project-panel { padding:32px 40px; border-right:1px solid var(--border); }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+.filter-row { display:flex; gap:7px; flex-wrap:wrap; }
+.filter-btn { font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; background:var(--surface); color:var(--muted); border:1.5px solid var(--border); padding:5px 13px; border-radius:20px; cursor:pointer; transition:all 0.15s; }
+.filter-btn:hover { color:var(--text); border-color:#adb3c0; }
+.filter-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.proj-list { display:flex; flex-direction:column; gap:12px; }
+.proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:10px; padding:18px 20px; transition:border-color 0.2s,box-shadow 0.2s; opacity:0; transform:translateY(8px); animation:fadeUp 0.35s ease forwards; }
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+.proj-card:nth-child(1){animation-delay:0.04s}.proj-card:nth-child(2){animation-delay:0.09s}.proj-card:nth-child(3){animation-delay:0.14s}.proj-card:nth-child(4){animation-delay:0.19s}.proj-card:nth-child(5){animation-delay:0.24s}.proj-card:nth-child(6){animation-delay:0.29s}
+.proj-card:hover { border-color:#c0c5d0; box-shadow:0 3px 14px rgba(0,0,0,0.07); }
+.proj-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; }
+.proj-name { font-size:13px; font-weight:600; line-height:1.4; border-left-width:3px; border-left-style:solid; padding-left:9px; }
+.proj-hrs { font-size:21px; font-weight:700; color:var(--accent); }
+.proj-share { font-size:10px; color:var(--muted); font-weight:500; text-align:right; }
+.proj-months-active { font-size:10.5px; color:var(--muted); margin-bottom:12px; padding-left:12px; }
+.stacked-bar { height:7px; border-radius:4px; overflow:hidden; display:flex; gap:2px; margin-bottom:11px; }
+.stacked-seg { height:100%; }
+.dept-pills { display:flex; gap:10px; flex-wrap:wrap; }
+.dept-pill { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted); }
+.dept-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.dept-pill-hrs { font-weight:600; color:var(--text); }
+
+/* DETAIL PANEL */
+.detail-panel { padding:28px 24px; background:var(--surface); position:sticky; top:0; max-height:100vh; overflow-y:auto; }
+.detail-panel-title { font-size:9.5px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
+.month-detail { margin-bottom:20px; }
+.month-detail-hdr { display:flex; justify-content:space-between; align-items:center; padding-bottom:7px; border-bottom:2px solid var(--border); margin-bottom:7px; }
+.month-detail-name { font-size:12px; font-weight:700; }
+.month-detail-total { font-size:14px; font-weight:700; color:var(--accent); }
+.detail-line { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid var(--border); font-size:11.5px; }
+.detail-line:last-child { border-bottom:none; }
+.detail-line-name { display:flex; align-items:center; gap:7px; color:var(--muted); }
+.detail-line-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.detail-line-hrs { font-weight:600; font-variant-numeric:tabular-nums; }
+.dept-legend { margin-top:20px; padding-top:18px; border-top:1px solid var(--border); }
+.dept-legend-item { display:flex; align-items:center; gap:9px; padding:4px 0; font-size:11.5px; color:var(--muted); }
+.dept-legend-swatch { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
+
+/* EXEC SUMMARY */
+.exec-summary { background:var(--surface); border-top:2px solid var(--border); padding:44px 40px 56px; }
+.exec-summary-title { font-size:22px; font-weight:800; letter-spacing:-0.3px; margin-bottom:4px; }
+.exec-summary-sub { font-size:12px; color:var(--muted); margin-bottom:32px; }
+.exec-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:28px; }
+.exec-card { border:1.5px solid var(--border); border-radius:10px; padding:20px 22px; position:relative; overflow:hidden; }
+.exec-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--ccolor, var(--accent)); }
+.exec-card-rank { font-size:9.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.exec-card-name { font-size:14px; font-weight:700; margin-bottom:2px; line-height:1.4; }
+.exec-card-hrs { font-size:26px; font-weight:800; letter-spacing:-0.5px; color:var(--ccolor, var(--accent)); margin-bottom:4px; }
+.exec-card-share { font-size:10.5px; color:var(--muted); margin-bottom:10px; }
+.exec-card-insight { font-size:11.5px; line-height:1.65; color:#3a3d45; }
+.exec-obs { border:1.5px solid var(--border); border-radius:10px; padding:24px 26px; background:var(--surface2); }
+.exec-obs-title { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
+.exec-obs-list { display:flex; flex-direction:column; gap:12px; }
+.exec-obs-item { display:flex; gap:12px; font-size:12px; line-height:1.65; }
+.exec-obs-bullet { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:7px; }
+
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">NEXA</div>
+  <div class="topbar-meta">AHA Resource Report &nbsp;·&nbsp; Nov 2025 — May 2026</div>
+</div>
+
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <div class="hero-title">AHA <span>Hours</span> Dashboard</div>
+      <div class="hero-sub">Resource allocation across all projects · Nov 2025 — May 2026</div>
+    </div>
+    <div class="kpi-row" id="kpiRow"></div>
+  </div>
+  <div class="section-label">Monthly Hours — Click any month to filter</div>
+  <div class="timeline-wrap">
+    <div class="hbar-chart" id="monthBars"></div>
+    <div class="chart-legend" id="chartLegend"></div>
+  </div>
+</div>
+
+<div class="body-grid">
+  <div class="project-panel">
+    <div class="panel-header">
+      <div class="section-label" style="margin-bottom:0">Project Breakdown</div>
+      <div class="filter-row" id="filterRow"></div>
+    </div>
+    <div class="proj-list" id="projList"></div>
+  </div>
+  <div class="detail-panel">
+    <div class="detail-panel-title" id="detailTitle">Monthly Breakdown</div>
+    <div id="detailContent"></div>
+    <div class="dept-legend" id="deptLegend"></div>
+  </div>
+</div>
+
+<div class="exec-summary">
+  <div class="exec-summary-title">Executive Summary</div>
+  <div class="exec-summary-sub">Project-level analysis · Nov 2025 — May 2026 · Total portfolio: 1,875.92 hrs</div>
+  <div class="exec-grid" id="execGrid"></div>
+  <div class="exec-obs" id="execObs"></div>
+</div>
+
+<script>
+const RAW = [
+  {m:'Nov',proj:'HubSpot Support',dept:'Inbound',hrs:3.75},
+  {m:'Nov',proj:'Guidelines',dept:'Design',hrs:27.00},
+  {m:'Nov',proj:'Guidelines',dept:'Client Service',hrs:11.00},
+  {m:'Nov',proj:'Guidelines',dept:'Copywriting',hrs:2.00},
+  {m:'Nov',proj:'Performance Campaigns',dept:'Performance',hrs:10.00},
+  {m:'Nov',proj:'Social Media',dept:'Design',hrs:20.00},
+  {m:'Nov',proj:'Social Media',dept:'Client Service',hrs:9.83},
+  {m:'Nov',proj:'Social Media',dept:'Copywriting',hrs:7.50},
+  {m:'Dec',proj:'HubSpot Support',dept:'Inbound',hrs:21.25},
+  {m:'Dec',proj:'Guidelines',dept:'Design',hrs:54.00},
+  {m:'Dec',proj:'Guidelines',dept:'Client Service',hrs:22.75},
+  {m:'Dec',proj:'Performance Campaigns',dept:'Performance',hrs:13.00},
+  {m:'Dec',proj:'Social Media',dept:'Client Service',hrs:78.92},
+  {m:'Dec',proj:'Social Media',dept:'Design',hrs:43.00},
+  {m:'Dec',proj:'Social Media',dept:'Production',hrs:32.00},
+  {m:'Dec',proj:'Social Media',dept:'Copywriting',hrs:11.00},
+  {m:'Jan',proj:'HubSpot Support',dept:'Inbound',hrs:74.58},
+  {m:'Jan',proj:'HubSpot Support',dept:'Web',hrs:6.50},
+  {m:'Jan',proj:'Performance',dept:'Performance',hrs:12.08},
+  {m:'Jan',proj:'Performance',dept:'Copywriting',hrs:5.00},
+  {m:'Jan',proj:'Guidelines',dept:'Production',hrs:94.00},
+  {m:'Jan',proj:'Guidelines',dept:'Client Service',hrs:56.50},
+  {m:'Jan',proj:'Guidelines',dept:'Design',hrs:54.00},
+  {m:'Jan',proj:'Guidelines',dept:'Copywriting',hrs:8.75},
+  {m:'Jan',proj:'Social Media',dept:'Client Service',hrs:156.58},
+  {m:'Jan',proj:'Social Media',dept:'Design',hrs:48.00},
+  {m:'Jan',proj:'Social Media',dept:'Copywriting',hrs:13.00},
+  {m:'Jan',proj:'Social Media',dept:'Production',hrs:12.00},
+  {m:'Feb',proj:'HubSpot Support',dept:'Inbound',hrs:90.75},
+  {m:'Feb',proj:'HubSpot Support',dept:'Web',hrs:3.17},
+  {m:'Feb',proj:'Performance',dept:'Performance',hrs:21.58},
+  {m:'Feb',proj:'Social Media',dept:'Client Service',hrs:38.83},
+  {m:'Feb',proj:'Social Media',dept:'Design',hrs:27.00},
+  {m:'Feb',proj:'Social Media',dept:'Copywriting',hrs:12.50},
+  {m:'Feb',proj:'Social Media',dept:'Production',hrs:8.00},
+  {m:'Feb',proj:'Guidelines',dept:'Design',hrs:41.00},
+  {m:'Feb',proj:'Guidelines',dept:'Production',hrs:39.00},
+  {m:'Feb',proj:'Guidelines',dept:'Client Service',hrs:28.00},
+  {m:'Feb',proj:'Guidelines',dept:'Copywriting',hrs:9.00},
+  {m:'Mar',proj:'HubSpot Support',dept:'Inbound',hrs:80.25},
+  {m:'Mar',proj:'Performance',dept:'Performance',hrs:18.33},
+  {m:'Mar',proj:'Social Media',dept:'Client Service',hrs:53.42},
+  {m:'Mar',proj:'Social Media',dept:'Production',hrs:34.00},
+  {m:'Mar',proj:'Social Media',dept:'Design',hrs:29.00},
+  {m:'Mar',proj:'Social Media',dept:'Copywriting',hrs:10.00},
+  {m:'Mar',proj:'Guidelines',dept:'Production',hrs:45.00},
+  {m:'Mar',proj:'Guidelines',dept:'Client Service',hrs:42.00},
+  {m:'Mar',proj:'Guidelines',dept:'Design',hrs:37.00},
+  {m:'Apr',proj:'HubSpot Support',dept:'Inbound',hrs:48.33},
+  {m:'Apr',proj:'Performance',dept:'Performance',hrs:16.25},
+  {m:'Apr',proj:'Social Media',dept:'Design',hrs:30.00},
+  {m:'Apr',proj:'Social Media',dept:'Production',hrs:25.00},
+  {m:'Apr',proj:'Social Media',dept:'Client Service',hrs:21.50},
+  {m:'Apr',proj:'Guidelines',dept:'Client Service',hrs:34.50},
+  {m:'Apr',proj:'Guidelines',dept:'Design',hrs:25.00},
+  {m:'Apr',proj:'Guidelines',dept:'Production',hrs:24.00},
+  {m:'May',proj:'HubSpot Support',dept:'Inbound',hrs:25.50},
+  {m:'May',proj:'Performance',dept:'Performance',hrs:2.00},
+  {m:'May',proj:'Social Media',dept:'Design',hrs:16.00},
+  {m:'May',proj:'Social Media',dept:'Production',hrs:7.00},
+  {m:'May',proj:'Social Media',dept:'Client Service',hrs:3.00},
+  {m:'May',proj:'Guidelines',dept:'Design',hrs:14.00},
+  {m:'May',proj:'Guidelines',dept:'Client Service',hrs:6.00},
+  {m:'May',proj:'Guidelines',dept:'Production',hrs:2.00},
+];
+
+const MONTHS = ['Nov','Dec','Jan','Feb','Mar','Apr','May'];
+const GRAND_TOTAL = 1875.92;
+
+const PROJ_COLORS = {
+  'Guidelines':            '#c8102e',
+  'Social Media':          '#3b82f6',
+  'HubSpot Support':       '#f59e0b',
+  'Performance':           '#f97316',
+  'Performance Campaigns': '#a855f7',
+};
+
+const DEPT_COLORS = {
+  'Inbound':        '#f59e0b',
+  'Design':         '#ef4444',
+  'Client Service': '#3b82f6',
+  'Production':     '#22c55e',
+  'Copywriting':    '#a855f7',
+  'Performance':    '#f97316',
+  'Web':            '#06b6d4',
+};
+
+const PROJ_INSIGHTS = {
+  'Guidelines': 'The single largest investment at 676.50 hrs (36% of total), spanning all 7 months. Design, Production, and Client Service all contributed heavily — reflecting the labour intensity of developing and rolling out a certification content programme across the MENA region. January was the peak month at 213.25 hrs, driven by Production ramping up to full capacity.',
+  'Social Media': 'Second largest at 432.83 hrs. Client Service dominated, reflecting ongoing community management, content oversight, and stakeholder coordination. November through January saw the heaviest load — the Nov–Jan concentration aligns with a high-activity engagement period before the new SOW cadence took hold from February.',
+  'HubSpot Support': 'Third at 354.09 hrs, almost entirely Inbound. Effort peaked in February 2026 (93.92 hrs) during what appears to be the most intensive phase of HubSpot configuration and support. A steady decline from March onward suggests the transition to BAU support mode.',
+  'Performance': 'Consistent but contained at 75.25 hrs across Jan–May. The even month-to-month spread (ranging 2–21 hrs) reflects an ongoing optimisation cadence rather than a campaign sprint, pointing to steady performance management activity throughout Q1–Q2 2026.',
+  'Performance Campaigns': 'The smallest engagement at 23 hrs, active only in Nov–Dec 2025. Represents the close-out of a prior campaign cycle with no continuation into 2026 — likely wound down as the new SOW period commenced.',
+};
+
+function sumBy(data, key) {
+  return data.reduce((acc,r) => { acc[r[key]]=(acc[r[key]]||0)+r.hrs; return acc; }, {});
+}
+function monthTotal(m) { return RAW.filter(r=>r.m===m).reduce((s,r)=>s+r.hrs,0); }
+
+let activeFilter = 'All';
+let activeMonth = null;
+const ALL_PROJECTS = [...new Set(RAW.map(r=>r.proj))];
+
+function renderKPIs() {
+  const depts = [...new Set(RAW.map(r=>r.dept))].length;
+  const peakM = MONTHS.reduce((a,b)=>monthTotal(a)>monthTotal(b)?a:b);
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi"><div class="kpi-value red">1,875.92</div><div class="kpi-label">Total Hours</div></div>
+    <div class="kpi"><div class="kpi-value">${ALL_PROJECTS.length}</div><div class="kpi-label">Projects</div></div>
+    <div class="kpi"><div class="kpi-value">${depts}</div><div class="kpi-label">Departments</div></div>
+    <div class="kpi"><div class="kpi-value">${peakM}</div><div class="kpi-label">Peak Month</div></div>
+    <div class="kpi"><div class="kpi-value">${monthTotal(peakM).toFixed(0)}</div><div class="kpi-label">Peak Hrs</div></div>
+  `;
+}
+
+function renderChartLegend() {
+  document.getElementById('chartLegend').innerHTML = `
+    <div class="section-label">Project Key</div>
+    ${Object.entries(PROJ_COLORS).map(([p,c])=>`
+      <div class="chart-legend-item">
+        <div class="chart-legend-swatch" style="background:${c}"></div>
+        <span>${p}</span>
+      </div>`).join('')}
+  `;
+}
+
+function renderTimeline() {
+  const maxHrs = Math.max(...MONTHS.map(m=>monthTotal(m)));
+  const container = document.getElementById('monthBars');
+  container.innerHTML = '';
+  MONTHS.forEach(m => {
+    const total = monthTotal(m);
+    const projData = sumBy(RAW.filter(r=>r.m===m),'proj');
+    const segs = Object.entries(projData).sort((a,b)=>b[1]-a[1]).map(([proj,hrs])=>{
+      const w = (hrs/maxHrs*100).toFixed(1);
+      return `<div class="hbar-seg" style="width:${w}%;background:${PROJ_COLORS[proj]||'#94a3b8'}" title="${proj}: ${hrs.toFixed(0)}h"></div>`;
+    }).join('');
+    const row = document.createElement('div');
+    row.className = 'hbar-row'+(activeMonth===m?' active':'');
+    row.innerHTML = `
+      <div class="hbar-mlabel">${m}</div>
+      <div class="hbar-track">${segs}</div>
+      <div class="hbar-val">${total.toFixed(0)}h</div>
+    `;
+    row.addEventListener('click',()=>{ activeMonth=activeMonth===m?null:m; renderTimeline(); renderProjects(); });
+    container.appendChild(row);
+  });
+}
+
+function renderFilters() {
+  const opts = ['All',...ALL_PROJECTS];
+  document.getElementById('filterRow').innerHTML = opts.map(o=>`
+    <button class="filter-btn ${activeFilter===o?'active':''}" data-f="${o}">${o}</button>
+  `).join('');
+  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+    activeFilter=b.dataset.f; renderFilters(); renderProjects();
+  }));
+}
+
+function getFiltered() {
+  let d = RAW;
+  if (activeFilter!=='All') d=d.filter(r=>r.proj===activeFilter);
+  if (activeMonth) d=d.filter(r=>r.m===activeMonth);
+  return d;
+}
+
+function renderProjects() {
+  const data = getFiltered();
+  const projT = sumBy(data,'proj');
+  const sorted = Object.entries(projT).sort((a,b)=>b[1]-a[1]);
+  const list = document.getElementById('projList');
+  list.innerHTML='';
+  sorted.forEach(([proj,total])=>{
+    const pd = data.filter(r=>r.proj===proj);
+    const deptT = sumBy(pd,'dept');
+    const months = MONTHS.filter(m=>[...new Set(pd.map(r=>r.m))].includes(m));
+    const share = ((total/GRAND_TOTAL)*100).toFixed(1);
+    const color = PROJ_COLORS[proj]||'#94a3b8';
+    const segs = Object.entries(deptT).sort((a,b)=>b[1]-a[1]).map(([dept,hrs])=>
+      `<div class="stacked-seg" style="width:${(hrs/total*100).toFixed(1)}%;background:${DEPT_COLORS[dept]||'#888'}"></div>`
+    ).join('');
+    const pills = Object.entries(deptT).sort((a,b)=>b[1]-a[1]).map(([dept,hrs])=>`
+      <div class="dept-pill">
+        <div class="dept-dot" style="background:${DEPT_COLORS[dept]||'#888'}"></div>
+        <span>${dept}</span><span class="dept-pill-hrs">${hrs.toFixed(2)}</span>
+      </div>`).join('');
+    const card = document.createElement('div');
+    card.className='proj-card';
+    card.innerHTML=`
+      <div class="proj-card-top">
+        <div>
+          <div class="proj-name" style="border-left-color:${color}">${proj}</div>
+          <div class="proj-months-active">Active: ${months.join(', ')}</div>
+        </div>
+        <div>
+          <div class="proj-hrs">${total.toFixed(2)}</div>
+          <div class="proj-share">${share}% of total</div>
+        </div>
+      </div>
+      <div class="stacked-bar">${segs}</div>
+      <div class="dept-pills">${pills}</div>
+    `;
+    list.appendChild(card);
+  });
+  renderDetail(data);
+}
+
+function renderDetail(data) {
+  const ordM = MONTHS.filter(m=>[...new Set(data.map(r=>r.m))].includes(m));
+  let html='';
+  if (activeMonth) {
+    document.getElementById('detailTitle').textContent=`${activeMonth} — Projects`;
+    const projT=sumBy(data,'proj');
+    const tot=Object.values(projT).reduce((s,v)=>s+v,0);
+    html+=`<div class="month-detail"><div class="month-detail-hdr"><div class="month-detail-name">All Projects</div><div class="month-detail-total">${tot.toFixed(2)}h</div></div>`;
+    Object.entries(projT).sort((a,b)=>b[1]-a[1]).forEach(([proj,hrs])=>{
+      html+=`<div class="detail-line"><div class="detail-line-name"><div class="detail-line-dot" style="background:${PROJ_COLORS[proj]||'#888'}"></div>${proj}</div><div class="detail-line-hrs">${hrs.toFixed(2)}</div></div>`;
+    });
+    html+='</div>';
+  } else {
+    document.getElementById('detailTitle').textContent='Monthly Breakdown';
+    ordM.forEach(m=>{
+      const mD=data.filter(r=>r.m===m);
+      const mT=mD.reduce((s,r)=>s+r.hrs,0);
+      const dT=sumBy(mD,'dept');
+      html+=`<div class="month-detail"><div class="month-detail-hdr"><div class="month-detail-name">${m}</div><div class="month-detail-total">${mT.toFixed(2)}h</div></div>`;
+      Object.entries(dT).sort((a,b)=>b[1]-a[1]).forEach(([dept,hrs])=>{
+        html+=`<div class="detail-line"><div class="detail-line-name"><div class="detail-line-dot" style="background:${DEPT_COLORS[dept]||'#888'}"></div>${dept}</div><div class="detail-line-hrs">${hrs.toFixed(2)}</div></div>`;
+      });
+      html+='</div>';
+    });
+  }
+  document.getElementById('detailContent').innerHTML=html;
+  document.getElementById('deptLegend').innerHTML=`
+    <div class="section-label" style="margin-bottom:10px">Department Key</div>
+    ${Object.entries(DEPT_COLORS).map(([d,c])=>`
+      <div class="dept-legend-item"><div class="dept-legend-swatch" style="background:${c}"></div><span>${d}</span></div>`).join('')}
+  `;
+}
+
+function renderExecSummary() {
+  const projT = sumBy(RAW,'proj');
+  const sorted = Object.entries(projT).sort((a,b)=>b[1]-a[1]);
+  document.getElementById('execGrid').innerHTML = sorted.map(([proj,total],i)=>{
+    const share=((total/GRAND_TOTAL)*100).toFixed(1);
+    const color=PROJ_COLORS[proj]||'#888';
+    return `
+      <div class="exec-card" style="--ccolor:${color}">
+        <div class="exec-card-rank">Rank ${i+1} of ${sorted.length}</div>
+        <div class="exec-card-name">${proj}</div>
+        <div class="exec-card-hrs">${total.toFixed(2)} hrs</div>
+        <div class="exec-card-share">${share}% of total portfolio hours</div>
+        <div class="exec-card-insight">${PROJ_INSIGHTS[proj]||'No additional commentary.'}</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('execObs').innerHTML = `
+    <div class="exec-obs-title">Key Observations for Management</div>
+    <div class="exec-obs-list">
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>January 2026 was the peak month at 529.49 hrs</strong> — a simultaneous surge across Social Media (229.58 hrs), Guidelines (213.25 hrs), and HubSpot Support (81.08 hrs). This represents the highest single-month resource draw in the period and warrants forward planning to avoid recurrence without adequate resourcing.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Guidelines consumed 36% of all hours</strong> and was the only project to engage all four core delivery departments consistently. Its sustained effort across all 7 months reflects the ongoing, complex nature of certification content development across the region.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Social Media shows a clear front-loading pattern</strong> — Nov through Jan account for over 60% of its total hours. This aligns with a heavy engagement push in the first half of the reporting period, with activity normalising from February onward.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>HubSpot Support peaked in Feb and is now in decline</strong>, suggesting the intensive build phase is complete. The remaining Apr–May hours indicate BAU-level maintenance. A decision on next SOW scope for HubSpot should factor in this reduced ongoing need.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>May 2026 is the lowest month at 103.50 hrs</strong>, representing a natural drawdown as the current SOW approaches its end. This creates a strategic window to align the next SOW scope before momentum is lost.</span></div>
+    </div>
+  `;
+}
+
+renderKPIs();
+renderChartLegend();
+renderTimeline();
+renderFilters();
+renderProjects();
+renderExecSummary();
+</script>
+</body>
+</html>
