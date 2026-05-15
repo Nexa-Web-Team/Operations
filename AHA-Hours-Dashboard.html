@@ -13,12 +13,10 @@
 }
 body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--text); min-height: 100vh; }
 
-/* TOPBAR */
 .topbar { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; background:var(--surface); border-bottom:1px solid var(--border); box-shadow:0 1px 3px rgba(0,0,0,0.05); }
 .brand { font-size:13px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); }
 .topbar-meta { font-size:11.5px; color:var(--muted); }
 
-/* HERO */
 .hero { background:var(--surface); padding:36px 40px 32px; border-bottom:1px solid var(--border); }
 .hero-top { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; margin-bottom:36px; }
 .hero-title { font-size:36px; font-weight:800; line-height:1.1; letter-spacing:-0.5px; }
@@ -30,7 +28,6 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .kpi-value.red { color:var(--accent); }
 .kpi-label { font-size:9.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-top:3px; }
 
-/* TIMELINE */
 .section-label { font-size:9.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
 .timeline-wrap { display:grid; grid-template-columns:1fr 210px; gap:28px; align-items:start; }
 .hbar-chart { display:flex; flex-direction:column; gap:8px; }
@@ -46,7 +43,6 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .chart-legend-item { display:flex; align-items:center; gap:9px; font-size:12px; color:var(--text); }
 .chart-legend-swatch { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
 
-/* BODY */
 .body-grid { display:grid; grid-template-columns:1fr 320px; }
 .project-panel { padding:32px 40px; border-right:1px solid var(--border); }
 .panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
@@ -55,13 +51,11 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .filter-btn:hover { color:var(--text); border-color:#adb3c0; }
 .filter-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 
-/* VIEW TOGGLE */
 .view-toggle { display:flex; gap:0; border:1.5px solid var(--border); border-radius:8px; overflow:hidden; }
 .view-btn { font-family:'Poppins',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:5px 14px; background:var(--surface); color:var(--muted); border:none; cursor:pointer; transition:all 0.15s; border-right:1px solid var(--border); }
 .view-btn:last-child { border-right:none; }
 .view-btn.active { background:var(--text); color:#fff; }
 
-/* PROJECT CARDS */
 .proj-list { display:flex; flex-direction:column; gap:14px; }
 .proj-card { background:var(--surface); border:1.5px solid var(--border); border-radius:10px; overflow:hidden; opacity:0; transform:translateY(8px); animation:fadeUp 0.35s ease forwards; }
 @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
@@ -69,9 +63,7 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .proj-card:nth-child(3){animation-delay:0.14s}.proj-card:nth-child(4){animation-delay:0.19s}
 .proj-card:nth-child(5){animation-delay:0.24s}.proj-card:nth-child(6){animation-delay:0.29s}
 
-/* CARD HEADER (always visible) */
-.proj-card-header { padding:18px 20px; cursor:pointer; transition:background 0.15s; }
-.proj-card-header:hover { background:var(--surface2); }
+.proj-card-header { padding:18px 20px; }
 .proj-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; }
 .proj-name { font-size:13px; font-weight:600; line-height:1.4; border-left-width:3px; border-left-style:solid; padding-left:9px; }
 .proj-right { text-align:right; }
@@ -85,38 +77,32 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .dept-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 .dept-pill-hrs { font-weight:600; color:var(--text); }
 
-/* EXPAND TOGGLE */
-.expand-row { display:flex; align-items:center; justify-content:space-between; padding:8px 20px; background:var(--surface2); border-top:1px solid var(--border); cursor:pointer; transition:background 0.15s; }
-.expand-row:hover { background:var(--surface3); }
-.expand-label { font-size:10.5px; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; display:flex; align-items:center; gap:7px; }
+.expand-toggle { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; background:#dde0e8; border-top:2px solid #c4c8d4; cursor:pointer; transition:background 0.15s; }
+.expand-toggle:hover { background:#cdd0da; }
+.expand-label { display:flex; align-items:center; gap:7px; font-size:10.5px; font-weight:700; color:#3a3d4a; letter-spacing:0.06em; text-transform:uppercase; }
 .expand-icon { font-size:12px; transition:transform 0.25s; display:inline-block; }
-.expand-row.open .expand-icon { transform:rotate(180deg); }
+.expand-hint { font-size:10px; color:#5a6070; font-weight:600; }
 
-/* PEOPLE PANEL */
-.people-panel { border-top:1px solid var(--border); max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1); }
-.people-panel.open { max-height:1000px; }
-.people-table { width:100%; }
-.people-table-head { display:grid; grid-template-columns:1fr 90px 90px 80px; gap:8px; padding:10px 20px 8px; border-bottom:1px solid var(--border); background:var(--surface2); }
+.people-panel { max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1); border-top:1px solid var(--border); }
+.people-panel.open { max-height:1400px; }
+.people-table-head { display:grid; grid-template-columns:1fr 80px 80px 1fr; gap:8px; padding:10px 20px 8px; border-bottom:1px solid var(--border); background:var(--surface2); }
 .people-table-head span { font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); }
 .people-table-head span:not(:first-child) { text-align:right; }
-.person-row { display:grid; grid-template-columns:1fr 90px 90px 80px; gap:8px; align-items:center; padding:10px 20px; border-bottom:1px solid var(--border); transition:background 0.12s; }
+.person-row { display:grid; grid-template-columns:1fr 80px 80px 1fr; gap:8px; align-items:center; padding:10px 20px; border-bottom:1px solid var(--border); transition:background 0.12s; }
 .person-row:last-child { border-bottom:none; }
 .person-row:hover { background:var(--surface2); }
-.person-info {}
 .person-name { font-size:12px; font-weight:600; color:var(--text); }
 .person-role { font-size:10.5px; color:var(--muted); margin-top:1px; }
-.person-dept-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:500; color:var(--muted); margin-top:3px; }
+.person-dept { display:inline-flex; align-items:center; gap:5px; font-size:10px; color:var(--muted); margin-top:3px; }
 .person-dept-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
 .person-hrs { font-size:13px; font-weight:700; color:var(--accent); text-align:right; }
-.person-share { font-size:11px; color:var(--muted); text-align:right; }
-.person-minibar-wrap { }
+.person-share-col { text-align:right; }
+.person-share-pct { font-size:11px; color:var(--muted); }
 .person-minibar { height:5px; border-radius:3px; background:var(--surface3); overflow:hidden; margin-top:4px; }
 .person-minibar-fill { height:100%; border-radius:3px; }
-.person-month-dots { display:flex; gap:3px; margin-top:5px; justify-content:flex-end; }
-.month-dot { width:14px; height:14px; border-radius:3px; font-size:7px; font-weight:700; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.9); }
-.month-dot.empty { background:var(--surface3); color:var(--muted); }
+.month-dots { display:flex; gap:3px; justify-content:flex-end; }
+.month-dot { width:18px; height:18px; border-radius:3px; font-size:7px; font-weight:700; display:flex; align-items:center; justify-content:center; }
 
-/* DETAIL PANEL */
 .detail-panel { padding:28px 24px; background:var(--surface); position:sticky; top:0; max-height:100vh; overflow-y:auto; }
 .detail-panel-title { font-size:9.5px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
 .month-detail { margin-bottom:20px; }
@@ -132,7 +118,6 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 .dept-legend-item { display:flex; align-items:center; gap:9px; padding:4px 0; font-size:11.5px; color:var(--muted); }
 .dept-legend-swatch { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
 
-/* EXEC SUMMARY */
 .exec-summary { background:var(--surface); border-top:2px solid var(--border); padding:44px 40px 56px; }
 .exec-summary-title { font-size:22px; font-weight:800; letter-spacing:-0.3px; margin-bottom:4px; }
 .exec-summary-sub { font-size:12px; color:var(--muted); margin-bottom:32px; }
@@ -206,20 +191,20 @@ body { background: var(--bg); font-family: 'Poppins', sans-serif; color: var(--t
 </div>
 
 <script>
-// ── AGGREGATED DATA (month/dept/project) ──────────────────────────────────────
+// ── RAW DATA (updated from new Excel) ─────────────────────────────────────────
 const RAW = [
   {m:'Nov',proj:'HubSpot Support',dept:'Inbound',hrs:3.75},
   {m:'Nov',proj:'Guidelines',dept:'Design',hrs:27.00},
   {m:'Nov',proj:'Guidelines',dept:'Client Service',hrs:11.00},
   {m:'Nov',proj:'Guidelines',dept:'Copywriting',hrs:2.00},
-  {m:'Nov',proj:'Performance Campaigns',dept:'Performance',hrs:10.00},
+  {m:'Nov',proj:'Performance',dept:'Performance',hrs:10.00},
   {m:'Nov',proj:'Social Media',dept:'Design',hrs:20.00},
   {m:'Nov',proj:'Social Media',dept:'Client Service',hrs:9.83},
   {m:'Nov',proj:'Social Media',dept:'Copywriting',hrs:7.50},
   {m:'Dec',proj:'HubSpot Support',dept:'Inbound',hrs:21.25},
   {m:'Dec',proj:'Guidelines',dept:'Design',hrs:54.00},
   {m:'Dec',proj:'Guidelines',dept:'Client Service',hrs:22.75},
-  {m:'Dec',proj:'Performance Campaigns',dept:'Performance',hrs:13.00},
+  {m:'Dec',proj:'Performance',dept:'Performance',hrs:13.00},
   {m:'Dec',proj:'Social Media',dept:'Client Service',hrs:78.92},
   {m:'Dec',proj:'Social Media',dept:'Design',hrs:43.00},
   {m:'Dec',proj:'Social Media',dept:'Production',hrs:32.00},
@@ -274,13 +259,26 @@ const RAW = [
   {m:'May',proj:'Guidelines',dept:'Production',hrs:2.00},
 ];
 
-// ── PEOPLE DATA (from timesheet) ──────────────────────────────────────────────
-const PEOPLE = {"Social Media": {"Diksha Shetty": {"dept": "Client Service", "role": "Account Manager", "total": 189.12, "months": {"Nov": 9.34, "Dec": 40.92, "Jan": 46.6, "Feb": 38.84, "Mar": 53.42}}, "Dalia Khater": {"dept": "Client Service", "role": "Head of Client Services", "total": 0.5, "months": {"Nov": 0.5}}, "Austin Gearheart": {"dept": "Client Service", "role": "Account Manager", "total": 148.0, "months": {"Dec": 38.0, "Jan": 110.0}}, "Yara Issa": {"dept": "Design", "role": "Graphic Designer", "total": 160.5, "months": {"Nov": 20.0, "Dec": 24.5, "Jan": 20.0, "Feb": 24.0, "Mar": 29.0, "Apr": 30.0, "May": 13.0}}, "Robert Munteanu": {"dept": "Copywriting", "role": "English Copywriter", "total": 44.0, "months": {"Nov": 7.5, "Dec": 11.0, "Jan": 13.0, "Feb": 12.5}}, "Allan Jay A Quiambao": {"dept": "Production", "role": "Videographer/Editor", "total": 118.0, "months": {"Dec": 32.0, "Jan": 12.0, "Feb": 8.0, "Mar": 34.0, "Apr": 25.0, "May": 7.0}}, "Gamze Atli": {"dept": "Design", "role": "Graphic Designer", "total": 10.0, "months": {"Dec": 10.0}}, "Abdelrahman Mohamed": {"dept": "Design", "role": "Graphic Designer", "total": 8.5, "months": {"Dec": 8.5}}, "Rubin Dsouza": {"dept": "Design", "role": "Graphic Designer", "total": 31.0, "months": {"Jan": 28.0, "Feb": 3.0}}, "Sean Boyle": {"dept": "Copywriting", "role": "English Copywriter", "total": 10.0, "months": {"Mar": 10.0}}, "Shaima Ahmed": {"dept": "Design", "role": "Graphic Designer", "total": 3.0, "months": {"May": 3.0}}, "Hind Fiddah": {"dept": "Client Service", "role": "Account Manager", "total": 24.5, "months": {"Apr": 21.5, "May": 3.0}}}, "Performance Campaigns": {"Yusuf Siddiqui": {"dept": "Performance", "role": "Senior Performance Marketing Specialist", "total": 4.0, "months": {"Dec": 4.0}}, "Abhishek Kumar Kaushik": {"dept": "Performance", "role": "Performance Marketing Specialist", "total": 19.0, "months": {"Nov": 10.0, "Dec": 9.0}}}, "HubSpot Support": {"Narita Mehrotra": {"dept": "Inbound", "role": "Inbound Lead", "total": 81.33, "months": {"Nov": 3.75, "Dec": 13.75, "Jan": 19.33, "Feb": 16.5, "Mar": 10.25, "Apr": 12.25, "May": 5.5}}, "Debolina Ghosh": {"dept": "Inbound", "role": "Marketing Automation Manager", "total": 136.0, "months": {"Dec": 5.0, "Jan": 30.0, "Feb": 38.0, "Mar": 33.0, "Apr": 19.0, "May": 11.0}}, "Sarim Shakir": {"dept": "Inbound", "role": "Marketing Automation Specialist", "total": 119.58, "months": {"Dec": 2.5, "Jan": 25.25, "Apr": 17.08, "Feb": 34.25, "Mar": 32.5, "May": 8.0}}, "Harsh Kumar": {"dept": "Web", "role": "HubSpot Developer", "total": 9.67, "months": {"Jan": 6.5, "Feb": 3.17}}, "Prasanna Kumar": {"dept": "Inbound", "role": "Senior CRM Specialist", "total": 7.5, "months": {"Feb": 2.0, "Mar": 4.5, "May": 1.0}}}, "Guidelines": {"Dalia Khater": {"dept": "Client Service", "role": "Head of Client Services", "total": 1.25, "months": {"Nov": 0.5, "Jan": 0.5, "Mar": 0.25}}, "Ahmed Moawad": {"dept": "Client Service", "role": "Account Manager", "total": 195.25, "months": {"Nov": 10.0, "Dec": 19.0, "Jan": 56.0, "Feb": 28.0, "Mar": 41.75, "Apr": 34.5, "May": 6.0}}, "Gamze Atli": {"dept": "Design", "role": "Graphic Designer", "total": 166.0, "months": {"Nov": 27.0, "Dec": 50.0, "Jan": 42.0, "Feb": 34.0, "Mar": 12.0, "May": 1.0}}, "Diksha Shetty": {"dept": "Client Service", "role": "Account Manager", "total": 4.25, "months": {"Nov": 0.5, "Dec": 3.75}}, "Robert Munteanu": {"dept": "Copywriting", "role": "Senior English Copywriter", "total": 19.75, "months": {"Nov": 2.0, "Jan": 8.75, "Feb": 9.0}}, "Yara Issa": {"dept": "Design", "role": "Graphic Designer", "total": 34.0, "months": {"Dec": 4.0, "Feb": 5.0, "Apr": 17.0, "May": 8.0}}, "Shaima Ahmed": {"dept": "Design", "role": "Graphic Designer", "total": 35.0, "months": {"Jan": 8.0, "Mar": 25.0, "Apr": 2.0}}, "Umesh Mistry": {"dept": "Production", "role": "Videographer/Editor", "total": 26.0, "months": {"Jan": 26.0}}, "Junaid Mustafa": {"dept": "Production", "role": "Videographer/Editor", "total": 32.0, "months": {"Jan": 20.0, "Feb": 8.0, "Mar": 4.0}}, "John Farinas": {"dept": "Production", "role": "Videographer/Editor", "total": 59.0, "months": {"Jan": 48.0, "Feb": 8.0, "Mar": 3.0}}, "Sheema Rahman": {"dept": "Design", "role": "Design Lead", "total": 6.0, "months": {"Jan": 4.0, "Feb": 2.0}}, "Allan Jay A Quiambao": {"dept": "Production", "role": "Videographer/Editor", "total": 87.0, "months": {"Feb": 23.0, "Mar": 38.0, "Apr": 24.0, "May": 2.0}}, "Hannan Satti": {"dept": "Design", "role": "Graphic Designer", "total": 11.0, "months": {"Apr": 6.0, "May": 5.0}}}, "Performance": {"Robert Munteanu": {"dept": "Copywriting", "role": "English Copywriter", "total": 5.0, "months": {"Jan": 5.0}}, "Abhishek Kumar Kaushik": {"dept": "Performance", "role": "Performance Marketing Specialist", "total": 49.25, "months": {"Jan": 7.08, "Feb": 13.59, "Mar": 16.33, "Apr": 12.25}}, "Yusuf Siddiqui": {"dept": "Performance", "role": "Senior Performance Marketing Specialist", "total": 15.0, "months": {"Jan": 5.0, "May": 1.0, "Feb": 4.0, "Mar": 2.0, "Apr": 3.0}}, "Imran Kapadia": {"dept": "Performance", "role": "Performance Lead", "total": 6.0, "months": {"Feb": 4.0, "Apr": 1.0, "May": 1.0}}}};
+// ── PEOPLE DATA (updated from new Excel) ──────────────────────────────────────
+const PEOPLE = {"Social Media": {"Diksha Shetty": {"dept": "Client Service", "role": "Account Manager", "total": 189.12, "months": {"Nov": 9.34, "Dec": 40.92, "Jan": 46.6, "Feb": 38.84, "Mar": 53.42}}, "Dalia Khater": {"dept": "Client Service", "role": "Head of Client Services", "total": 0.5, "months": {"Nov": 0.5}}, "Austin Gearheart": {"dept": "Client Service", "role": "Account Manager", "total": 148.0, "months": {"Dec": 38.0, "Jan": 110.0}}, "Yara Issa": {"dept": "Design", "role": "Graphic Designer", "total": 160.5, "months": {"Nov": 20.0, "Dec": 24.5, "Jan": 20.0, "Feb": 24.0, "Mar": 29.0, "Apr": 30.0, "May": 13.0}}, "Robert Munteanu": {"dept": "Copywriting", "role": "English Copywriter", "total": 44.0, "months": {"Nov": 7.5, "Dec": 11.0, "Jan": 13.0, "Feb": 12.5}}, "Allan Jay A Quiambao": {"dept": "Production", "role": "Videographer/Editor", "total": 118.0, "months": {"Dec": 32.0, "Jan": 12.0, "Feb": 8.0, "Mar": 34.0, "Apr": 25.0, "May": 7.0}}, "Gamze Atli": {"dept": "Design", "role": "Graphic Designer", "total": 10.0, "months": {"Dec": 10.0}}, "Abdelrahman Mohamed": {"dept": "Design", "role": "Graphic Designer", "total": 8.5, "months": {"Dec": 8.5}}, "Rubin Dsouza": {"dept": "Design", "role": "Graphic Designer", "total": 31.0, "months": {"Jan": 28.0, "Feb": 3.0}}, "Sean Boyle": {"dept": "Copywriting", "role": "English Copywriter", "total": 10.0, "months": {"Mar": 10.0}}, "Shaima Ahmed": {"dept": "Design", "role": "Graphic Designer", "total": 3.0, "months": {"May": 3.0}}, "Hind Fiddah": {"dept": "Client Service", "role": "Account Manager", "total": 24.5, "months": {"Apr": 21.5, "May": 3.0}}}, "Performance": {"Yusuf Siddiqui": {"dept": "Performance", "role": "Senior Performance Marketing Specialist", "total": 19.0, "months": {"Dec": 4.0, "Jan": 5.0, "May": 1.0, "Feb": 4.0, "Mar": 2.0, "Apr": 3.0}}, "Abhishek Kumar Kaushik": {"dept": "Performance", "role": "Performance Marketing Specialist", "total": 68.25, "months": {"Nov": 10.0, "Dec": 9.0, "Jan": 7.08, "Feb": 13.59, "Mar": 16.33, "Apr": 12.25}}, "Robert Munteanu": {"dept": "Copywriting", "role": "English Copywriter", "total": 5.0, "months": {"Jan": 5.0}}, "Imran Kapadia": {"dept": "Performance", "role": "Performance Lead", "total": 6.0, "months": {"Feb": 4.0, "Apr": 1.0, "May": 1.0}}}, "HubSpot Support": {"Narita Mehrotra": {"dept": "Inbound", "role": "Inbound Lead", "total": 81.33, "months": {"Nov": 3.75, "Dec": 13.75, "Jan": 19.33, "Feb": 16.5, "Mar": 10.25, "Apr": 12.25, "May": 5.5}}, "Debolina Ghosh": {"dept": "Inbound", "role": "Marketing Automation Manager", "total": 136.0, "months": {"Dec": 5.0, "Jan": 30.0, "Feb": 38.0, "Mar": 33.0, "Apr": 19.0, "May": 11.0}}, "Sarim Shakir": {"dept": "Inbound", "role": "Marketing Automation Specialist", "total": 119.58, "months": {"Dec": 2.5, "Jan": 25.25, "Apr": 17.08, "Feb": 34.25, "Mar": 32.5, "May": 8.0}}, "Harsh Kumar": {"dept": "Web", "role": "HubSpot Developer", "total": 9.67, "months": {"Jan": 6.5, "Feb": 3.17}}, "Prasanna Kumar": {"dept": "Inbound", "role": "Senior CRM Specialist", "total": 7.5, "months": {"Feb": 2.0, "Mar": 4.5, "May": 1.0}}}, "Guidelines": {"Dalia Khater": {"dept": "Client Service", "role": "Head of Client Services", "total": 1.25, "months": {"Nov": 0.5, "Jan": 0.5, "Mar": 0.25}}, "Ahmed Moawad": {"dept": "Client Service", "role": "Account Manager", "total": 195.25, "months": {"Nov": 10.0, "Dec": 19.0, "Jan": 56.0, "Feb": 28.0, "Mar": 41.75, "Apr": 34.5, "May": 6.0}}, "Gamze Atli": {"dept": "Design", "role": "Graphic Designer", "total": 166.0, "months": {"Nov": 27.0, "Dec": 50.0, "Jan": 42.0, "Feb": 34.0, "Mar": 12.0, "May": 1.0}}, "Diksha Shetty": {"dept": "Client Service", "role": "Account Manager", "total": 4.25, "months": {"Nov": 0.5, "Dec": 3.75}}, "Robert Munteanu": {"dept": "Copywriting", "role": "Senior English Copywriter", "total": 19.75, "months": {"Nov": 2.0, "Jan": 8.75, "Feb": 9.0}}, "Yara Issa": {"dept": "Design", "role": "Graphic Designer", "total": 34.0, "months": {"Dec": 4.0, "Feb": 5.0, "Apr": 17.0, "May": 8.0}}, "Shaima Ahmed": {"dept": "Design", "role": "Graphic Designer", "total": 35.0, "months": {"Jan": 8.0, "Mar": 25.0, "Apr": 2.0}}, "Umesh Mistry": {"dept": "Production", "role": "Videographer/Editor", "total": 26.0, "months": {"Jan": 26.0}}, "Junaid Mustafa": {"dept": "Production", "role": "Videographer/Editor", "total": 32.0, "months": {"Jan": 20.0, "Feb": 8.0, "Mar": 4.0}}, "John Farinas": {"dept": "Production", "role": "Videographer/Editor", "total": 59.0, "months": {"Jan": 48.0, "Feb": 8.0, "Mar": 3.0}}, "Sheema Rahman": {"dept": "Design", "role": "Design Lead", "total": 6.0, "months": {"Jan": 4.0, "Feb": 2.0}}, "Allan Jay A Quiambao": {"dept": "Production", "role": "Videographer/Editor", "total": 87.0, "months": {"Feb": 23.0, "Mar": 38.0, "Apr": 24.0, "May": 2.0}}, "Hannan Satti": {"dept": "Design", "role": "Graphic Designer", "total": 11.0, "months": {"Apr": 6.0, "May": 5.0}}}};
 
 const MONTHS = ['Nov','Dec','Jan','Feb','Mar','Apr','May'];
 const GRAND_TOTAL = 1875.92;
-const PROJ_COLORS = { 'Guidelines':'#c8102e', 'Social Media':'#3b82f6', 'HubSpot Support':'#f59e0b', 'Performance':'#f97316', 'Performance Campaigns':'#a855f7' };
-const DEPT_COLORS = { 'Inbound':'#f59e0b', 'Design':'#ef4444', 'Client Service':'#3b82f6', 'Production':'#22c55e', 'Copywriting':'#a855f7', 'Performance':'#f97316', 'Web':'#06b6d4' };
+const PROJ_COLORS = {
+  'Guidelines':     '#c8102e',
+  'Social Media':   '#3b82f6',
+  'HubSpot Support':'#f59e0b',
+  'Performance':    '#a855f7',
+};
+const DEPT_COLORS = {
+  'Inbound':       '#f59e0b',
+  'Design':        '#ef4444',
+  'Client Service':'#3b82f6',
+  'Production':    '#22c55e',
+  'Copywriting':   '#a855f7',
+  'Performance':   '#f97316',
+  'Web':           '#06b6d4',
+};
 
 function sumBy(data,key){ return data.reduce((acc,r)=>{ acc[r[key]]=(acc[r[key]]||0)+r.hrs; return acc; },{}); }
 function monthTotal(m){ return RAW.filter(r=>r.m===m).reduce((s,r)=>s+r.hrs,0); }
@@ -340,7 +338,9 @@ function renderFilters(){
   const opts=['All',...ALL_PROJECTS];
   document.getElementById('filterRow').innerHTML=opts.map(o=>`
     <button class="filter-btn ${activeFilter===o?'active':''}" data-f="${o}">${o}</button>`).join('');
-  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{ activeFilter=b.dataset.f; renderFilters(); renderProjects(); }));
+  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{
+    activeFilter=b.dataset.f; renderFilters(); renderProjects();
+  }));
 }
 
 function getFiltered(){
@@ -366,39 +366,34 @@ function renderProjects(){
     const segs=Object.entries(deptT).sort((a,b)=>b[1]-a[1]).map(([dept,hrs])=>
       `<div class="stacked-seg" style="width:${(hrs/total*100).toFixed(1)}%;background:${DEPT_COLORS[dept]||'#888'}"></div>`).join('');
     const pills=Object.entries(deptT).sort((a,b)=>b[1]-a[1]).map(([dept,hrs])=>`
-      <div class="dept-pill"><div class="dept-dot" style="background:${DEPT_COLORS[dept]||'#888'}"></div><span>${dept}</span><span class="dept-pill-hrs">${hrs.toFixed(2)}</span></div>`).join('');
+      <div class="dept-pill"><div class="dept-dot" style="background:${DEPT_COLORS[dept]||'#888'}"></div>
+      <span>${dept}</span><span class="dept-pill-hrs">${hrs.toFixed(2)}</span></div>`).join('');
 
-    // people panel
     const projPeople=PEOPLE[proj]||{};
-    const peopleFiltered = activeMonth
+    const peopleFiltered=activeMonth
       ? Object.fromEntries(Object.entries(projPeople).filter(([,p])=>p.months[activeMonth]))
       : projPeople;
-    const maxPersonHrs=Math.max(...Object.values(peopleFiltered).map(p=>activeMonth?p.months[activeMonth]||0:p.total));
+    const maxPHrs=Math.max(...Object.values(peopleFiltered).map(p=>activeMonth?p.months[activeMonth]||0:p.total),1);
     const peopleRows=Object.entries(peopleFiltered).sort((a,b)=>(activeMonth?b[1].months[activeMonth]||0:b[1].total)-(activeMonth?a[1].months[activeMonth]||0:a[1].total)).map(([name,p])=>{
       const phrs=activeMonth?p.months[activeMonth]||0:p.total;
       const pshare=((phrs/total)*100).toFixed(0);
-      const barW=(phrs/maxPersonHrs*100).toFixed(1);
+      const barW=(phrs/maxPHrs*100).toFixed(1);
       const dotColor=DEPT_COLORS[p.dept]||'#888';
       const mDots=MONTHS.map(m=>{
         const mh=p.months[m]||0;
-        const opacity=mh>0?Math.max(0.3,mh/maxPersonHrs):0;
-        const bg=mh>0?`${PROJ_COLORS[proj]||'#888'}`:'var(--surface3)';
-        const textColor=mh>0?'rgba(255,255,255,0.95)':'var(--muted)';
-        return `<div class="month-dot" style="background:${bg};opacity:${mh>0?0.4+opacity*0.6:1};color:${textColor}" title="${m}: ${mh.toFixed(1)}h">${m.charAt(0)}</div>`;
+        const bg=mh>0?color:'#e8eaf0';
+        const tc=mh>0?'rgba(255,255,255,0.95)':'#7a8394';
+        const op=mh>0?Math.max(0.4,mh/maxPHrs*1.0).toFixed(2):'1';
+        return `<div class="month-dot" style="background:${bg};opacity:${op};color:${tc};" title="${m}: ${mh.toFixed(1)}h">${m.charAt(0)}</div>`;
       }).join('');
       return `
         <div class="person-row">
-          <div class="person-info">
-            <div class="person-name">${name}</div>
-            <div class="person-role">${p.role}</div>
-            <div class="person-dept-badge"><div class="person-dept-dot" style="background:${dotColor}"></div>${p.dept}</div>
-          </div>
+          <div><div class="person-name">${name}</div><div class="person-role">${p.role}</div>
+          <div class="person-dept"><div class="person-dept-dot" style="background:${dotColor}"></div>${p.dept}</div></div>
           <div class="person-hrs">${phrs.toFixed(2)}</div>
-          <div class="person-share">
-            <div>${pshare}%</div>
-            <div class="person-minibar"><div class="person-minibar-fill" style="width:${barW}%;background:${PROJ_COLORS[proj]||'#888'}"></div></div>
-          </div>
-          <div class="person-month-dots">${mDots}</div>
+          <div class="person-share-col"><div class="person-share-pct">${pshare}%</div>
+          <div class="person-minibar"><div class="person-minibar-fill" style="width:${barW}%;background:${color};"></div></div></div>
+          <div class="month-dots">${mDots}</div>
         </div>`;
     }).join('');
 
@@ -406,7 +401,7 @@ function renderProjects(){
     const card=document.createElement('div');
     card.className='proj-card';
     card.innerHTML=`
-      <div class="proj-card-header" onclick="toggleExpand('${proj}',this)">
+      <div class="proj-card-header">
         <div class="proj-card-top">
           <div>
             <div class="proj-name" style="border-left-color:${color}">${proj}</div>
@@ -420,23 +415,18 @@ function renderProjects(){
         <div class="stacked-bar">${segs}</div>
         <div class="dept-pills">${pills}</div>
       </div>
-      <div class="expand-row ${isOpen?'open':''}" onclick="toggleExpand('${proj}',this)">
+      <div class="expand-toggle ${isOpen?'open':''}" onclick="toggleExpand('${proj}',this)">
         <div class="expand-label">
-          <span class="expand-icon">▼</span>
+          <span class="expand-icon" style="${isOpen?'transform:rotate(180deg)':''}">▼</span>
           <span>${Object.keys(peopleFiltered).length} Team Member${Object.keys(peopleFiltered).length!==1?'s':''}</span>
         </div>
-        <span style="font-size:10px;color:var(--muted);font-weight:500">Click to ${isOpen?'collapse':'expand'}</span>
+        <span class="expand-hint">Click to ${isOpen?'collapse':'expand'}</span>
       </div>
       <div class="people-panel ${isOpen?'open':''}">
-        <div class="people-table">
-          <div class="people-table-head">
-            <span>Person / Role</span>
-            <span>Hours</span>
-            <span>Share</span>
-            <span style="text-align:right">Monthly Activity</span>
-          </div>
-          ${peopleRows}
+        <div class="people-table-head">
+          <span>Person / Role</span><span>Hours</span><span>Share</span><span style="text-align:right">Monthly Activity</span>
         </div>
+        ${peopleRows}
       </div>
     `;
     list.appendChild(card);
@@ -445,15 +435,14 @@ function renderProjects(){
   renderDetail(data);
 }
 
-function toggleExpand(proj, el){
+function toggleExpand(proj,el){
   expandState[proj]=!expandState[proj];
   const card=el.closest('.proj-card');
   const panel=card.querySelector('.people-panel');
-  const row=card.querySelector('.expand-row');
   const icon=card.querySelector('.expand-icon');
-  const hint=row.querySelector('span:last-child');
+  const hint=card.querySelector('.expand-hint');
   panel.classList.toggle('open',expandState[proj]);
-  row.classList.toggle('open',expandState[proj]);
+  icon.style.transform=expandState[proj]?'rotate(180deg)':'';
   hint.textContent=`Click to ${expandState[proj]?'collapse':'expand'}`;
 }
 
@@ -495,10 +484,9 @@ function renderExecSummary(){
   const sorted=Object.entries(projT).sort((a,b)=>b[1]-a[1]);
   const INSIGHTS={
     'Guidelines':'The single largest investment at 676.50 hrs (36% of total). Ahmed Moawad (Client Service) and Gamze Atli (Design) were the two heaviest contributors at 195 and 166 hrs respectively. A team of 13 people contributed across all 7 months, reflecting the sustained complexity of the certification content rollout.',
-    'Social Media':'Second largest at 432.83 hrs across 12 contributors. Diksha Shetty and Austin Gearheart drove the Client Service hours (189 and 148 hrs), with the Nov–Jan period accounting for over 60% of total effort. Yara Issa was the primary Design resource across the full period.',
-    'HubSpot Support':'354.09 hrs almost entirely from 5 Inbound/Web team members. Debolina Ghosh (136 hrs) and Sarim Shakir (119 hrs) carried the bulk of the implementation and automation work, peaking in Feb 2026.',
-    'Performance':'75.25 hrs across 4 contributors. Abhishek Kumar Kaushik logged 49.25 hrs as the primary resource, with Yusuf Siddiqui (15 hrs) and Imran Kapadia (6 hrs) providing specialist support across Jan–May.',
-    'Performance Campaigns':'23 hrs across 2 people — Abhishek Kumar Kaushik and Yusuf Siddiqui — contained entirely to Nov–Dec 2025. A clean close-out of the prior campaign cycle.',
+    'Social Media':'Second largest at 747.08 hrs across 12 contributors. Diksha Shetty and Austin Gearheart drove the Client Service hours (189 and 148 hrs), with the Nov–Jan period accounting for over 60% of total effort. Yara Issa was the primary Design resource across the full period.',
+    'HubSpot Support':'354.08 hrs almost entirely from 5 Inbound/Web team members. Debolina Ghosh (136 hrs) and Sarim Shakir (119 hrs) carried the bulk of the implementation and automation work, peaking in Feb 2026.',
+    'Performance':'98.25 hrs across 4 contributors. Abhishek Kumar Kaushik led at 68.25 hrs across the full period, with Performance Campaigns activity now consolidated into this project from Nov 2025. Consistent month-to-month spend indicates an ongoing optimisation cadence.',
   };
   document.getElementById('execGrid').innerHTML=sorted.map(([proj,total],i)=>{
     const share=((total/GRAND_TOTAL)*100).toFixed(1);
@@ -516,11 +504,11 @@ function renderExecSummary(){
   document.getElementById('execObs').innerHTML=`
     <div class="exec-obs-title">Key Observations for Management</div>
     <div class="exec-obs-list">
-      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>January 2026 was the peak month at 529.49 hrs</strong> — a simultaneous surge across Social Media, Guidelines, and HubSpot Support. Three of the five projects ran at or near peak capacity simultaneously.</span></div>
-      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Guidelines alone consumed 36% of all hours</strong> with 13 contributors. Ahmed Moawad and Gamze Atli together accounted for over half of all Guidelines hours — a concentration risk worth noting for future SOW planning.</span></div>
-      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Austin Gearheart logged 110 hrs on Social Media in January alone</strong> — the single highest individual monthly contribution in the entire dataset — and was not active on the project from February onward.</span></div>
-      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>HubSpot Support is in a clear drawdown phase</strong>. The three core contributors (Debolina Ghosh, Sarim Shakir, Narita Mehrotra) have collectively reduced their hours by over 60% from peak to May. This signals a natural transition point for BAU handover.</span></div>
-      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>May 2026 is the lowest month at 103.50 hrs</strong> with a 26-person team winding down across the board. This creates a strategic window to align the next SOW scope before the team disperses to other clients.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>January 2026 was the peak month</strong> — a simultaneous surge across Social Media, Guidelines, and HubSpot Support. Three of the four projects ran at or near peak capacity simultaneously.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Guidelines consumed 36% of all hours</strong> with 13 contributors. Ahmed Moawad and Gamze Atli together accounted for over half of all Guidelines hours — a concentration risk worth noting for future SOW planning.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>Performance Campaigns are now consolidated into Performance</strong> — Abhishek Kumar Kaushik's Nov/Dec campaign hours roll up into a single unified project view, giving a cleaner picture of total performance marketing investment at 98.25 hrs.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>HubSpot Support is in a clear drawdown phase</strong>. The three core contributors have collectively reduced their hours by over 60% from peak to May, signalling a transition to BAU maintenance mode.</span></div>
+      <div class="exec-obs-item"><div class="exec-obs-bullet"></div><span><strong>May 2026 is the lowest month</strong> with a 26-person team winding down across all projects — creating a strategic window to align the next SOW scope before momentum is lost.</span></div>
     </div>
   `;
 }
