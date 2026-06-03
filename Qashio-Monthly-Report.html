@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qashio - Monthly Report — NEXA Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f2f4f7;font-family:'Poppins',sans-serif;color:#1a1d23;min-height:100vh;}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:#fff;border-bottom:1px solid #e2e5ec;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.brand{font-size:13px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:#3b82f6;}
+.topbar-meta{font-size:11.5px;color:#7a8394;}
+.hero{background:#fff;padding:36px 40px 32px;border-bottom:1px solid #e2e5ec;}
+.hero-title{font-size:36px;font-weight:800;line-height:1.1;letter-spacing:-0.5px;}
+.hero-title span{color:#3b82f6;}
+.hero-sub{font-size:13px;color:#7a8394;margin-top:6px;}
+.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
+.kpi{background:#f0f1f4;border:1px solid #e2e5ec;border-radius:10px;padding:14px 20px;min-width:105px;text-align:center;}
+.kpi-value{font-size:21px;font-weight:700;letter-spacing:-0.3px;}
+.kpi-label{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;margin-top:3px;}
+.section-label{font-size:9.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#7a8394;margin-bottom:14px;}
+/* EXEC SUMMARY */
+.exec-section{background:#fff;padding:40px 40px 44px;border-bottom:1px solid #e2e5ec;}
+.exec-title{font-size:20px;font-weight:800;letter-spacing:-0.3px;margin-bottom:4px;}
+.exec-sub{font-size:12px;color:#7a8394;margin-bottom:24px;}
+.exec-overview{background:#f0f1f4;border-left:3px solid #3b82f6;border-radius:0 8px 8px 0;padding:14px 18px;font-size:12px;line-height:1.7;color:#3a3d45;margin-bottom:20px;}
+.exec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+.exec-obs{border:1.5px solid #e2e5ec;border-radius:10px;padding:24px 26px;background:#f0f1f4;}
+.exec-obs-title{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#3b82f6;margin-bottom:14px;}
+.obs-item{display:flex;gap:12px;font-size:12px;line-height:1.65;margin-bottom:10px;}
+.obs-item:last-child{margin-bottom:0;}
+.obs-dot{width:6px;height:6px;border-radius:50%;background:#3b82f6;flex-shrink:0;margin-top:7px;}
+/* CHART */
+.chart-section{background:#fff;padding:28px 40px 32px;border-bottom:1px solid #e2e5ec;}
+.timeline-wrap{display:grid;grid-template-columns:1fr 210px;gap:28px;align-items:start;}
+.hbar-chart{display:flex;flex-direction:column;gap:8px;}
+.hbar-row{display:grid;grid-template-columns:36px 1fr 52px;align-items:center;gap:10px;padding:6px 10px;border-radius:7px;border:1.5px solid transparent;cursor:pointer;transition:background 0.15s,border-color 0.15s;}
+.hbar-row:hover{background:#f0f1f4;}
+.hbar-row.active{background:#fdf0f2;border-color:#3b82f6;}
+.hbar-mlabel{font-size:11px;font-weight:700;color:#7a8394;text-transform:uppercase;letter-spacing:0.05em;text-align:right;}
+.hbar-row.active .hbar-mlabel{color:#3b82f6;}
+/* BODY GRID */
+.body-grid{display:grid;grid-template-columns:1fr 320px;}
+.project-panel{padding:32px 40px;border-right:1px solid #e2e5ec;}
+.filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+.filter-btn{font-family:'Poppins',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;background:#fff;color:#7a8394;border:1.5px solid #e2e5ec;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all 0.15s;}
+.filter-btn:hover{color:#1a1d23;border-color:#adb3c0;}
+.filter-btn.active{background:#3b82f6;color:#fff;border-color:#3b82f6;}
+.detail-panel{padding:28px 24px;background:#fff;position:sticky;top:0;max-height:100vh;overflow-y:auto;}
+.detail-title{font-size:9.5px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#3b82f6;margin-bottom:18px;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#e2e5ec;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">NEXA</div>
+  <div class="topbar-meta">Qashio - Monthly Report &nbsp;·&nbsp; Generated 3 June 2026</div>
+</div>
+
+<div class="hero">
+  <div class="hero-title"><span>Qashio - Monthly Report</span></div>
+  <div class="hero-sub">Resource allocation report · Jan — Dec</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-value" style="color:#3b82f6;">359.91</div><div class="kpi-label">Total Hours</div></div>
+    <div class="kpi"><div class="kpi-value">3</div><div class="kpi-label">Projects</div></div>
+    <div class="kpi"><div class="kpi-value">7</div><div class="kpi-label">Team Members</div></div>
+    <div class="kpi"><div class="kpi-value">9</div><div class="kpi-label">Months</div></div>
+    <div class="kpi"><div class="kpi-value">Jan</div><div class="kpi-label">Peak Month</div></div>
+  </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="exec-section">
+  <div class="exec-title">Executive Summary</div>
+  <div class="exec-sub">AI-generated analysis · Qashio - Monthly Report · Total portfolio: 359.91 hrs</div>
+  <div class="exec-overview">This report covers 9 months of activity across 3 projects, with a team of 7 contributors logging a combined 359.91 hours. Activity peaked in Jan.</div>
+  <div class="exec-grid">
+      <div style="border:1.5px solid #e2e5ec;border-radius:10px;padding:20px 22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#3b82f6"></div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7a8394;margin-bottom:5px;">Rank 1 · 5 contributors</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:2px;line-height:1.4;">Qashio - Hubspot Maintenance Contract</div>
+        <div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#3b82f6;margin-bottom:4px;">327.74 hrs</div>
+        <div style="font-size:10.5px;color:#7a8394;margin-bottom:10px;">91.1% of total portfolio hours</div>
+        <div style="font-size:11.5px;line-height:1.65;color:#3a3d45;">Qashio - Hubspot Maintenance Contract accounted for 91% of total hours (327.7 hrs), led by the Hubspot team with Debolina Ghosh as the primary contributor.</div>
+        <div style="margin-top:10px;font-size:10.5px;color:#7a8394;">Top contributor: <strong style="color:#1a1d23;">Debolina Ghosh</strong> · 151.2 hrs</div>
+      </div>
+      <div style="border:1.5px solid #e2e5ec;border-radius:10px;padding:20px 22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#3b82f6"></div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7a8394;margin-bottom:5px;">Rank 2 · 1 contributor</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:2px;line-height:1.4;">Qashio - SEO 2026</div>
+        <div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#3b82f6;margin-bottom:4px;">21.00 hrs</div>
+        <div style="font-size:10.5px;color:#7a8394;margin-bottom:10px;">5.8% of total portfolio hours</div>
+        <div style="font-size:11.5px;line-height:1.65;color:#3a3d45;">Qashio - SEO 2026 accounted for 6% of total hours (21.0 hrs), led by the SEO team with Abhay Jain as the primary contributor.</div>
+        <div style="margin-top:10px;font-size:10.5px;color:#7a8394;">Top contributor: <strong style="color:#1a1d23;">Abhay Jain</strong> · 21.0 hrs</div>
+      </div>
+      <div style="border:1.5px solid #e2e5ec;border-radius:10px;padding:20px 22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#f59e0b"></div>
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7a8394;margin-bottom:5px;">Rank 3 · 1 contributor</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:2px;line-height:1.4;">Qashio - Web Maintenance 2026</div>
+        <div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;color:#f59e0b;margin-bottom:4px;">11.17 hrs</div>
+        <div style="font-size:10.5px;color:#7a8394;margin-bottom:10px;">3.1% of total portfolio hours</div>
+        <div style="font-size:11.5px;line-height:1.65;color:#3a3d45;">Qashio - Web Maintenance 2026 accounted for 3% of total hours (11.2 hrs), led by the Web team with Menam Ahmed as the primary contributor.</div>
+        <div style="margin-top:10px;font-size:10.5px;color:#7a8394;">Top contributor: <strong style="color:#1a1d23;">Menam Ahmed</strong> · 11.2 hrs</div>
+      </div></div>
+  <div class="exec-obs">
+    <div class="exec-obs-title">Key Observations</div>
+    <div class="obs-item"><div class="obs-dot"></div><span><strong>Jan was the peak month</strong> — 91 hrs logged across all projects simultaneously.</span></div><div class="obs-item"><div class="obs-dot"></div><span><strong>Qashio - Hubspot Maintenance Contract consumed 91% of all hours</strong> — the highest single-project investment in this period.</span></div><div class="obs-item"><div class="obs-dot"></div><span><strong>7 team members</strong> contributed across 3 projects, with hours ranging from 2.5 to 151.2 hrs per person.</span></div><div class="obs-item"><div class="obs-dot"></div><span>Activity spanned <strong>9 months</strong> (Jan to Dec), with 5 above-average months.</span></div>
+  </div>
+</div>
+
+<!-- MONTHLY CHART -->
+<div class="chart-section">
+  <div class="section-label">Monthly Hours — Click any month to filter</div>
+  <div class="timeline-wrap">
+    <div class="hbar-chart" id="monthBars">
+      <div class="hbar-row" onclick="filterMonth('Jan',this)" data-month="Jan">
+        <div class="hbar-mlabel">Jan</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:100.0%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 91h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">91h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Feb',this)" data-month="Feb">
+        <div class="hbar-mlabel">Feb</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:71.1%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 64h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">64h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Mar',this)" data-month="Mar">
+        <div class="hbar-mlabel">Mar</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:22.0%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 20h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">20h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Apr',this)" data-month="Apr">
+        <div class="hbar-mlabel">Apr</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:9.6%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 9h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">9h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('May',this)" data-month="May">
+        <div class="hbar-mlabel">May</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:26.3%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 24h"></div><div style="height:100%;width:23.2%;background:#3b82f6;min-width:3px;" title="Qashio - SEO 2026: 21h"></div><div style="height:100%;width:11.2%;background:#f59e0b;min-width:3px;" title="Qashio - Web Maintenance 2026: 10h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">55h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Jun',this)" data-month="Jun">
+        <div class="hbar-mlabel">Jun</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:1.1%;background:#f59e0b;min-width:3px;" title="Qashio - Web Maintenance 2026: 1h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">1h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Oct',this)" data-month="Oct">
+        <div class="hbar-mlabel">Oct</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:5.0%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 5h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">5h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Nov',this)" data-month="Nov">
+        <div class="hbar-mlabel">Nov</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:71.8%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 65h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">65h</div>
+      </div>
+      <div class="hbar-row" onclick="filterMonth('Dec',this)" data-month="Dec">
+        <div class="hbar-mlabel">Dec</div>
+        <div style="height:20px;background:#f0f1f4;border-radius:4px;overflow:hidden;display:flex;gap:1.5px;"><div style="height:100%;width:56.1%;background:#3b82f6;min-width:3px;" title="Qashio - Hubspot Maintenance Contract: 51h"></div></div>
+        <div style="font-size:11px;font-weight:700;text-align:right;white-space:nowrap;">51h</div>
+      </div></div>
+    <div>
+      <div class="section-label">Project Key</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:#1a1d23;">
+      <div style="width:13px;height:13px;border-radius:3px;background:#3b82f6;flex-shrink:0;"></div>
+      <span>Qashio - Hubspot Maintenance Contract</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:#1a1d23;">
+      <div style="width:13px;height:13px;border-radius:3px;background:#3b82f6;flex-shrink:0;"></div>
+      <span>Qashio - SEO 2026</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px;font-size:12px;color:#1a1d23;">
+      <div style="width:13px;height:13px;border-radius:3px;background:#f59e0b;flex-shrink:0;"></div>
+      <span>Qashio - Web Maintenance 2026</span>
+    </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS + DETAIL -->
+<div class="body-grid">
+  <div class="project-panel">
+    <div class="section-label">Project Breakdown</div>
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" onclick="filterProject('All',this)">All</button>
+      <button class="filter-btn" onclick="filterProject('Qashio - Hubspot Maintenance Contract',this)">Qashio - Hubspot Maintenance Contract</button><button class="filter-btn" onclick="filterProject('Qashio - SEO 2026',this)">Qashio - SEO 2026</button><button class="filter-btn" onclick="filterProject('Qashio - Web Maintenance 2026',this)">Qashio - Web Maintenance 2026</button>
+    </div>
+    <div id="projList">
+      <div class="proj-card" data-proj="Qashio - Hubspot Maintenance Contract" style="background:#fff;border:1.5px solid #e2e5ec;border-radius:10px;overflow:hidden;margin-bottom:14px;opacity:0;transform:translateY(8px);animation:fadeUp 0.35s ease forwards;">
+        <div style="padding:18px 20px;cursor:default;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;line-height:1.4;border-left:3px solid #3b82f6;padding-left:9px;">Qashio - Hubspot Maintenance Contract</div>
+              <div style="font-size:10.5px;color:#7a8394;margin-bottom:12px;padding-left:12px;">Active: Jan, Feb, Mar, Apr, May, Oct, Nov, Dec</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:21px;font-weight:700;color:#3b82f6;">327.74</div>
+              <div style="font-size:10px;color:#7a8394;font-weight:500;">91.1% of total</div>
+            </div>
+          </div>
+          <div style="height:7px;border-radius:4px;overflow:hidden;display:flex;gap:2px;margin-bottom:11px;"><div style="height:100%;width:99.2%;background:#94a3b8;"></div><div style="height:100%;width:0.8%;background:#06b6d4;"></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#7a8394;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>
+        <span>Hubspot</span><span style="font-weight:600;color:#1a1d23;">325.24</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#7a8394;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></div>
+        <span>Web</span><span style="font-weight:600;color:#1a1d23;">2.50</span>
+      </div></div>
+        </div>
+        <div class="expand-toggle" onclick="togglePeople('proj_Qashio___Hubspot_Maintenance_Contract')" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#e8eaf0;border-top:2px solid #d0d3dc;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#d8dbe5'" onmouseout="this.style.background='#e8eaf0'">
+          <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;color:#4a5060;letter-spacing:0.06em;text-transform:uppercase;">
+            <span id="proj_Qashio___Hubspot_Maintenance_Contract_icon" style="font-size:12px;transition:transform 0.25s;display:inline-block;">▼</span>
+            <span>5 Team Members</span>
+          </div>
+          <span style="font-size:10px;color:#7a8394;font-weight:500;" id="proj_Qashio___Hubspot_Maintenance_Contract_hint">Click to expand</span>
+        </div>
+        <div id="proj_Qashio___Hubspot_Maintenance_Contract_panel" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);border-top:1px solid #e2e5ec;">
+          <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;padding:10px 20px 8px;border-bottom:1px solid #e2e5ec;background:#f0f1f4;">
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;">Person / Role</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Hours</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Share</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Monthly Activity</span>
+          </div>
+          
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Debolina Ghosh</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">CRM Manager</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#94a3b8;"></div>Hubspot
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">151.15</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">46%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:100.0%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Jan: 44.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Feb: 30.5h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Mar: 13.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Apr: 4.0h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="May: 15.2h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Oct: 0.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Nov: 15.5h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Dec: 29.0h">D</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Sarim Shakir</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Hubspot Specialist</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#94a3b8;"></div>Hubspot
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">97.50</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">30%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:64.5%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Jan: 35.8h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Feb: 18.5h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Mar: 0.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Apr: 0.5h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="May: 2.5h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Oct: 0.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Nov: 28.8h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Dec: 11.5h">D</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Anushri Deepak</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Account Executive</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#94a3b8;"></div>Hubspot
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">55.34</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">17%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:36.6%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Jan: 10.3h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Feb: 14.2h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Mar: 6.9h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Apr: 3.2h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="May: 2.2h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Oct: 2.5h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Nov: 14.8h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Dec: 1.3h">D</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Narita Mehrotra</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Hubspot Team Lead</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#94a3b8;"></div>Hubspot
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">21.25</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">6%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:14.1%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Jan: 0.5h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Feb: 1.3h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Mar: 0.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Apr: 1.0h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="May: 2.5h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Oct: 1.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Nov: 6.0h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Dec: 9.0h">D</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Mubeena Begam</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Snr. Project Manager</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#06b6d4;"></div>Web
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">2.50</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">1%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:1.7%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jan: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Feb: 0.0h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Mar: 0.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Apr: 0.0h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="May: 1.5h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:0.40;" title="Oct: 1.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Nov: 0.0h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Dec: 0.0h">D</div></div>
+        </div>
+        </div>
+      </div>
+      <div class="proj-card" data-proj="Qashio - SEO 2026" style="background:#fff;border:1.5px solid #e2e5ec;border-radius:10px;overflow:hidden;margin-bottom:14px;opacity:0;transform:translateY(8px);animation:fadeUp 0.35s ease forwards;">
+        <div style="padding:18px 20px;cursor:default;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;line-height:1.4;border-left:3px solid #3b82f6;padding-left:9px;">Qashio - SEO 2026</div>
+              <div style="font-size:10.5px;color:#7a8394;margin-bottom:12px;padding-left:12px;">Active: May</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:21px;font-weight:700;color:#3b82f6;">21.00</div>
+              <div style="font-size:10px;color:#7a8394;font-weight:500;">5.8% of total</div>
+            </div>
+          </div>
+          <div style="height:7px;border-radius:4px;overflow:hidden;display:flex;gap:2px;margin-bottom:11px;"><div style="height:100%;width:100.0%;background:#94a3b8;"></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#7a8394;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>
+        <span>SEO</span><span style="font-weight:600;color:#1a1d23;">21.00</span>
+      </div></div>
+        </div>
+        <div class="expand-toggle" onclick="togglePeople('proj_Qashio___SEO_2026')" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#e8eaf0;border-top:2px solid #d0d3dc;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#d8dbe5'" onmouseout="this.style.background='#e8eaf0'">
+          <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;color:#4a5060;letter-spacing:0.06em;text-transform:uppercase;">
+            <span id="proj_Qashio___SEO_2026_icon" style="font-size:12px;transition:transform 0.25s;display:inline-block;">▼</span>
+            <span>1 Team Member</span>
+          </div>
+          <span style="font-size:10px;color:#7a8394;font-weight:500;" id="proj_Qashio___SEO_2026_hint">Click to expand</span>
+        </div>
+        <div id="proj_Qashio___SEO_2026_panel" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);border-top:1px solid #e2e5ec;">
+          <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;padding:10px 20px 8px;border-bottom:1px solid #e2e5ec;background:#f0f1f4;">
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;">Person / Role</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Hours</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Share</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Monthly Activity</span>
+          </div>
+          
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Abhay Jain</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Snr SEO Specialist</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#94a3b8;"></div>SEO
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">21.00</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">100%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:100.0%;background:#3b82f6;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jan: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Feb: 0.0h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Mar: 0.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Apr: 0.0h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#3b82f6;color:rgba(255,255,255,0.95);opacity:1.00;" title="May: 21.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jun: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Oct: 0.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Nov: 0.0h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Dec: 0.0h">D</div></div>
+        </div>
+        </div>
+      </div>
+      <div class="proj-card" data-proj="Qashio - Web Maintenance 2026" style="background:#fff;border:1.5px solid #e2e5ec;border-radius:10px;overflow:hidden;margin-bottom:14px;opacity:0;transform:translateY(8px);animation:fadeUp 0.35s ease forwards;">
+        <div style="padding:18px 20px;cursor:default;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;line-height:1.4;border-left:3px solid #f59e0b;padding-left:9px;">Qashio - Web Maintenance 2026</div>
+              <div style="font-size:10.5px;color:#7a8394;margin-bottom:12px;padding-left:12px;">Active: May, Jun</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:21px;font-weight:700;color:#3b82f6;">11.17</div>
+              <div style="font-size:10px;color:#7a8394;font-weight:500;">3.1% of total</div>
+            </div>
+          </div>
+          <div style="height:7px;border-radius:4px;overflow:hidden;display:flex;gap:2px;margin-bottom:11px;"><div style="height:100%;width:100.0%;background:#06b6d4;"></div></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#7a8394;">
+        <div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></div>
+        <span>Web</span><span style="font-weight:600;color:#1a1d23;">11.17</span>
+      </div></div>
+        </div>
+        <div class="expand-toggle" onclick="togglePeople('proj_Qashio___Web_Maintenance_2026')" style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#e8eaf0;border-top:2px solid #d0d3dc;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#d8dbe5'" onmouseout="this.style.background='#e8eaf0'">
+          <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;color:#4a5060;letter-spacing:0.06em;text-transform:uppercase;">
+            <span id="proj_Qashio___Web_Maintenance_2026_icon" style="font-size:12px;transition:transform 0.25s;display:inline-block;">▼</span>
+            <span>1 Team Member</span>
+          </div>
+          <span style="font-size:10px;color:#7a8394;font-weight:500;" id="proj_Qashio___Web_Maintenance_2026_hint">Click to expand</span>
+        </div>
+        <div id="proj_Qashio___Web_Maintenance_2026_panel" style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.22,1,0.36,1);border-top:1px solid #e2e5ec;">
+          <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;padding:10px 20px 8px;border-bottom:1px solid #e2e5ec;background:#f0f1f4;">
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;">Person / Role</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Hours</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Share</span>
+            <span style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7a8394;text-align:right;">Monthly Activity</span>
+          </div>
+          
+        <div style="display:grid;grid-template-columns:1fr 80px 80px 1fr;gap:8px;align-items:center;padding:10px 20px;border-bottom:1px solid #e2e5ec;transition:background 0.12s;" onmouseover="this.style.background='#f0f1f4'" onmouseout="this.style.background='transparent'">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#1a1d23;">Menam Ahmed</div>
+            <div style="font-size:10.5px;color:#7a8394;margin-top:1px;">Frontend Developer</div>
+            <div style="display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#7a8394;margin-top:3px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:#06b6d4;"></div>Web
+            </div>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:#3b82f6;text-align:right;">11.17</div>
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:#7a8394;">100%</div>
+            <div style="height:5px;border-radius:3px;background:#e8eaf0;overflow:hidden;margin-top:4px;"><div style="height:100%;width:100.0%;background:#f59e0b;border-radius:3px;"></div></div>
+          </div>
+          <div style="display:flex;gap:3px;justify-content:flex-end;"><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Jan: 0.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Feb: 0.0h">F</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Mar: 0.0h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Apr: 0.0h">A</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#f59e0b;color:rgba(255,255,255,0.95);opacity:0.91;" title="May: 10.2h">M</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#f59e0b;color:rgba(255,255,255,0.95);opacity:0.40;" title="Jun: 1.0h">J</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Oct: 0.0h">O</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Nov: 0.0h">N</div><div style="width:18px;height:18px;border-radius:3px;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;background:#e8eaf0;color:#7a8394;opacity:1;" title="Dec: 0.0h">D</div></div>
+        </div>
+        </div>
+      </div></div>
+  </div>
+  <div class="detail-panel">
+    <div class="detail-title" id="detailTitle">Monthly Breakdown</div>
+    <div id="detailContent">
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Jan</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">90.59h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">90.59</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Feb</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">64.43h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">64.43</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Mar</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">19.92h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">19.92</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Apr</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">8.66h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">8.66</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">May</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">54.98h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">22.31</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>SEO
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">21.00</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></div>Web
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">11.67</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Jun</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">1.00h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></div>Web
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">1.00</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Oct</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">4.50h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">3.50</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;flex-shrink:0;"></div>Web
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">1.00</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Nov</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">65.00h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">65.00</div>
+      </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:7px;border-bottom:2px solid #e2e5ec;margin-bottom:7px;">
+          <div style="font-size:12px;font-weight:700;">Dec</div>
+          <div style="font-size:14px;font-weight:700;color:#3b82f6;">50.83h</div>
+        </div>
+        
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #e2e5ec;font-size:11.5px;">
+        <div style="display:flex;align-items:center;gap:7px;color:#7a8394;">
+          <div style="width:7px;height:7px;border-radius:50%;background:#94a3b8;flex-shrink:0;"></div>Hubspot
+        </div>
+        <div style="font-weight:600;font-variant-numeric:tabular-nums;">50.83</div>
+      </div>
+      </div></div>
+    <div style="margin-top:20px;padding-top:18px;border-top:1px solid #e2e5ec;">
+      <div class="section-label" style="margin-bottom:10px;">Department Key</div>
+      
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;font-size:11.5px;color:#7a8394;">
+      <div style="width:11px;height:11px;border-radius:3px;background:#94a3b8;flex-shrink:0;"></div>
+      <span>Hubspot</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;font-size:11.5px;color:#7a8394;">
+      <div style="width:11px;height:11px;border-radius:3px;background:#06b6d4;flex-shrink:0;"></div>
+      <span>Web</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;font-size:11.5px;color:#7a8394;">
+      <div style="width:11px;height:11px;border-radius:3px;background:#94a3b8;flex-shrink:0;"></div>
+      <span>SEO</span>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let activeMonth=null;
+function filterMonth(m,el){
+  activeMonth=activeMonth===m?null:m;
+  document.querySelectorAll('.hbar-row').forEach(r=>r.classList.remove('active'));
+  if(activeMonth){el.classList.add('active');}
+  document.querySelectorAll('.proj-card').forEach(card=>{
+    const proj=card.dataset.proj;
+    if(!activeMonth){card.style.display='';return;}
+    const hasMonth=card.querySelector(`[title*="${activeMonth}:"]`);
+    card.style.display=hasMonth?'':'none';
+  });
+}
+function filterProject(proj,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card=>{
+    card.style.display=(proj==='All'||card.dataset.proj===proj)?'':'none';
+  });
+}
+function togglePeople(id){
+  const panel=document.getElementById(id+'_panel');
+  const icon=document.getElementById(id+'_icon');
+  const hint=document.getElementById(id+'_hint');
+  const isOpen=panel.style.maxHeight&&panel.style.maxHeight!=='0px';
+  panel.style.maxHeight=isOpen?'0px':'1200px';
+  icon.style.transform=isOpen?'':'rotate(180deg)';
+  hint.textContent=isOpen?'Click to expand':'Click to collapse';
+}
+</script>
+</body>
+</html>
