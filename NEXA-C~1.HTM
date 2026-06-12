@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXA — Claude Usage Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:     #EDE9E2;
+  --cream-dk:  #E4DFD6;
+  --ink:       #161412;
+  --ink-mid:   #484440;
+  --ink-soft:  #8A8480;
+  --ink-dim:   #B8B4B0;
+  --white:     #FFFFFF;
+  --border:    #DDD9D2;
+  --coral:     #CC785C;
+  --teal:      #0A8A6A;
+  --teal-lt:   #EBF8F4;
+  --red:       #A82828;
+  --slate:     #4E6070;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══ CSS LOGO ══ */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+}
+.logo-sym {
+  flex-shrink: 0;
+}
+.logo-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+/* Topbar logo size */
+.topbar .logo-sym { width: 18px; height: 18px; }
+.topbar .logo-text { font-size: 22px; }
+/* Footer logo size */
+.footer-logo-wrap .logo-sym { width: 13px; height: 13px; opacity: 0.5; }
+.footer-logo-wrap .logo-text { font-size: 16px; color: var(--ink-soft); }
+
+/* ══ TOPBAR ══ */
+.topbar {
+  background: var(--cream);
+  padding: 16px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.topbar-meta {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ══ HERO ══ */
+.hero {
+  position: relative;
+  padding: 60px 56px 52px;
+  background: var(--cream);
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-watermark {
+  position: absolute;
+  right: 32px;
+  top: 16px;
+  width: 300px;
+  height: 300px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 18px;
+  max-width: 640px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--coral);
+}
+.hero-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.hero-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 3px;
+}
+.badge-ghost { background: transparent; color: var(--ink-soft); border: 1px solid var(--border); }
+.badge-coral { background: rgba(204,120,92,0.12); color: var(--coral); border: 1px solid rgba(204,120,92,0.28); }
+
+/* ══ DOCUMENT ══ */
+.doc {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 56px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ══ SECTION CARD ══ */
+.scard { background: var(--white); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+
+.scard-2col { display: grid; grid-template-columns: 3fr 2fr; gap: 0; }
+.scard-2col > div { padding: 24px 28px 22px; }
+.scard-2col > div:first-child { border-right: 1px solid var(--border); }
+
+.scard-53 { display: grid; grid-template-columns: 5fr 3fr; gap: 0; }
+.scard-53 > div { padding: 24px 28px 22px; }
+.scard-53 > div:first-child { border-right: 1px solid var(--border); }
+
+.scard-inner { padding: 24px 28px 22px; }
+
+/* ══ SECTION LABEL ══ */
+.slabel { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.snum { font-family: 'Playfair Display', Georgia, serif; font-size: 10px; font-weight: 700; color: var(--coral); letter-spacing: 1px; flex-shrink: 0; }
+.stitle { font-family: 'Playfair Display', Georgia, serif; font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+
+/* ══ TABLE ══ */
+.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tbl thead tr { border-bottom: 2px solid var(--ink); }
+.tbl th { padding: 7px 10px 7px 0; text-align: left; font-size: 8.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-soft); }
+.tbl td { padding: 8px 10px 8px 0; color: var(--ink-mid); border-bottom: 1px solid #F0EDE8; vertical-align: middle; font-size: 11.5px; }
+.tbl tbody tr:last-child td { border-bottom: none; }
+.th-p { color: #5066D0 !important; } .th-s { color: var(--slate) !important; }
+.vyes { color: var(--teal); font-weight: 700; } .vno { color: var(--coral); font-weight: 600; }
+
+/* ══ CALLOUT ══ */
+.callout { font-size: 11px; line-height: 1.7; padding: 10px 14px; border-radius: 3px; margin-top: 10px; }
+.c-teal { background: var(--teal-lt); color: #085C45; border-left: 3px solid var(--teal); }
+
+/* ══ HARD REQ ══ */
+.hard-req { background: #FFF5F5; border-left: 4px solid var(--red); border-radius: 3px; padding: 11px 15px; margin-bottom: 10px; }
+.hard-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+.hard-text { font-size: 12px; font-weight: 600; color: #6B0000; line-height: 1.5; }
+
+/* ══ ACCOUNT CARDS ══ */
+.acct { border: 1px solid var(--border); border-radius: 3px; padding: 11px 13px; margin-top: 7px; }
+.acct-teal { border-left: 3px solid var(--teal); } .acct-coral { border-left: 3px solid var(--coral); }
+.alabel { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.acct-teal .alabel { color: var(--teal); } .acct-coral .alabel { color: var(--coral); }
+.aname { font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.abody { font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+.aconfirm { font-size: 9px; font-weight: 700; color: var(--teal); display: block; margin-top: 4px; }
+.anote { font-size: 9px; color: var(--ink-dim); font-style: italic; display: block; margin-top: 4px; }
+
+/* ══ MIGRATION ══ */
+.mig-intro { background: #F7F5F2; border-radius: 3px; padding: 12px 16px; font-size: 11.5px; color: var(--ink-mid); line-height: 1.7; margin-bottom: 14px; border-left: 3px solid var(--border); }
+.mig-intro strong { color: var(--ink); font-weight: 600; }
+
+/* ══ PATHS ══ */
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.path { border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+.path-a { border-top: 3px solid #9B5EA0; } .path-b { border-top: 3px solid var(--coral); }
+.path-head { padding: 12px 14px 10px; background: #FAFAFA; border-bottom: 1px solid var(--border); }
+.plabel { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+.path-a .plabel { color: #9B5EA0; } .path-b .plabel { color: var(--coral); }
+.pname { font-size: 11.5px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.psub { font-size: 10px; color: var(--ink-soft); font-style: italic; margin-top: 2px; }
+.path-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.step { display: grid; grid-template-columns: 44px 1fr; align-items: start; }
+.sn { font-size: 8px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-dim); padding-top: 1px; }
+.pa .sn { color: #9B5EA0; } .pb .sn { color: var(--coral); } .sd .sn { color: var(--teal); }
+.sc { border-left: 1px solid #EEEAE4; padding-left: 10px; }
+.sd .sc { border-left-color: #B0EACE; }
+.st { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 1px; }
+.sd .st { color: var(--teal); }
+.sb { font-size: 10px; color: var(--ink-soft); line-height: 1.5; }
+
+/* ══ GATE ══ */
+.gate { background: var(--ink); border-radius: 3px; padding: 11px 18px; display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.gl { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; flex-shrink: 0; }
+.gt { font-size: 11.5px; font-weight: 500; color: #D8D4CC; flex: 1; line-height: 1.5; }
+.ge { font-size: 10px; color: #555; flex-shrink: 0; }
+
+/* ══ CONSEQUENCE ══ */
+.cq { border: 1px solid #EDCFC4; border-top: 3px solid var(--coral); border-radius: 3px; overflow: hidden; }
+.cq-head { padding: 11px 16px; background: #FEF9F7; border-bottom: 1px solid #EDCFC4; display: flex; align-items: center; justify-content: space-between; }
+.cq-title { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+.cq-badge { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--coral); background: #FEF0EC; border: 1px solid #F8D0B8; border-radius: 3px; padding: 3px 8px; }
+.cq-intro { padding: 10px 16px; font-size: 11px; color: var(--ink-soft); line-height: 1.65; border-bottom: 1px solid #F5EDE8; }
+.cq-cols { display: grid; grid-template-columns: repeat(3,1fr); }
+.cq-col { padding: 11px 14px; border-right: 1px solid #F5EDE8; }
+.cq-col:last-child { border-right: none; }
+.cq-ct { font-size: 8.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--coral); margin-bottom: 5px; }
+.cq-cb { font-size: 10.5px; color: var(--ink-mid); line-height: 1.55; }
+
+/* ══ ADMIN ══ */
+.adm { border: 1px solid var(--border); border-radius: 3px; padding: 11px 13px; margin-bottom: 6px; border-left: 3px solid var(--slate); }
+.adm:last-child { margin-bottom: 0; }
+.adml { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate); margin-bottom: 3px; }
+.admn { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.admb { font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ══ FOOTER ══ */
+.footer-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; }
+.leg { display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--ink-dim); }
+.ldot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+@media print {
+  .topbar { padding: 12px 36px; }
+  .hero { padding: 40px 36px 36px; }
+  .doc { padding: 0 36px 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <span class="logo-mark">
+  <svg class="logo-sym" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#CC785C">
+    <g transform="translate(50,50)">
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(0)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(30)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(60)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(90)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(120)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(150)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(180)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(210)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(240)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(270)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(300)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(330)"/>
+    </g>
+  </svg>
+  <span class="logo-text">Claude</span>
+</span>
+  <span class="topbar-meta">NEXA · Internal Policy · June 2026</span>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <!-- Large SVG watermark symbol -->
+  <svg class="hero-watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#CC785C">
+    <g transform="translate(50,50)">
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(0)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(30)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(60)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(90)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(120)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(150)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(180)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(210)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(240)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(270)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(300)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(330)"/>
+    </g>
+  </svg>
+  <div class="hero-eyebrow">NEXA · Claude Usage Policy</div>
+  <div class="hero-title">Claude<br><em>Usage</em><br>Policy</div>
+  <div class="hero-sub">Governing Claude access and AI development activity for all NEXA employees</div>
+  <div class="hero-meta">
+    <span class="badge badge-ghost">IT / Operations</span>
+    <span class="badge badge-ghost">June 2026</span>
+    <span class="badge badge-coral">Applies to all employees</span>
+  </div>
+</div>
+
+<!-- ══ DOCUMENT ══ -->
+<div class="doc">
+
+  <!-- 01 + 02 -->
+  <div class="scard">
+    <div class="scard-2col">
+      <div>
+        <div class="slabel"><span class="snum">01</span><span class="stitle">Seat Types &amp; Permitted Use</span></div>
+        <table class="tbl">
+          <thead>
+            <tr><th>Capability</th><th class="th-p">Premium Seat</th><th class="th-s">Standard Seat</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Summaries, reports, presentations, day-to-day tasks</td><td><span class="vyes">✓ Included</span></td><td><span class="vyes">✓ Included</span></td></tr>
+            <tr><td>Shared team prompts and skills</td><td><span class="vyes">✓ Included</span></td><td><span class="vyes">✓ Included</span></td></tr>
+            <tr><td>AI development and build work</td><td><span class="vyes">✓ Included</span></td><td><span class="vno">✗ Not in scope</span></td></tr>
+            <tr><td>Publishing via Vercel, Supabase and connected platforms</td><td><span class="vyes">✓ Via @digitalnexa.com only</span></td><td><span class="vno">✗ Not applicable</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout c-teal">Publishing to Vercel, Supabase, and any integrated platform is only possible through a @digitalnexa.com account. Personal accounts have no access to these integrations.</div>
+      </div>
+      <div>
+        <div class="slabel"><span class="snum">02</span><span class="stitle">Account Requirement</span></div>
+        <div class="hard-req">
+          <div class="hard-label">Hard Requirement · IT/Operations</div>
+          <div class="hard-text">All NEXA work on Claude — regardless of seat type — must be performed on an @digitalnexa.com account. No exceptions.</div>
+        </div>
+        <div class="acct acct-teal">
+          <div class="alabel">Authorised</div>
+          <div class="aname">@digitalnexa.com account</div>
+          <div class="abody">The only authorised environment for any Claude activity connected to NEXA clients, projects, or internal operations. Access is revoked automatically when an employee leaves.</div>
+          <span class="aconfirm">✓ Eligible for Team plan invitation</span>
+        </div>
+        <div class="acct acct-coral">
+          <div class="alabel">Not Permitted</div>
+          <div class="aname">Personal email accounts</div>
+          <div class="abody">Any non-@digitalnexa.com account may not be used for NEXA work. Company data on personal accounts remains accessible after an employee leaves — this is the core data risk this policy addresses.</div>
+          <span class="anote">Personal Claude subscriptions may continue for personal use only</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="scard">
+    <div class="scard-inner">
+      <div class="slabel"><span class="snum">03</span><span class="stitle">Migration to the Team Plan</span></div>
+      <div class="mig-intro"><strong>How the invite works:</strong> IT/Operations sends a Team plan invitation to your @digitalnexa.com address. On accepting, you are prompted to bring your existing data into the Team workspace — chats, projects, files, memory, connectors, and skills all move across. Any active Pro or Max subscription cancels automatically with a prorated refund. The move is one-way. You have seven days from the invite, or can act later via Settings &gt; Account.</div>
+      <div class="paths">
+        <div class="path path-a">
+          <div class="path-head">
+            <div class="plabel">Path A</div>
+            <div class="pname">Already using a @digitalnexa.com individual account</div>
+            <div class="psub">Straightforward environment change. Migrate at the point of acceptance.</div>
+          </div>
+          <div class="path-body">
+            <div class="step pa"><div class="sn">Step 1</div><div class="sc"><div class="st">Receive Team invite</div><div class="sb">IT/Operations sends an invitation to your @digitalnexa.com address. A reminder banner appears in Claude for seven days.</div></div></div>
+            <div class="step pa"><div class="sn">Step 2</div><div class="sc"><div class="st">Accept and choose migration</div><div class="sb">On accepting, select the option to bring your data into the Team workspace. Chats, projects, files, memory, connectors, and skills move across automatically.</div></div></div>
+            <div class="step pa"><div class="sn">Step 3</div><div class="sc"><div class="st">Subscription cancels automatically</div><div class="sb">Any active Pro or Max subscription cancels with a prorated refund at migration. No manual action needed.</div></div></div>
+            <div class="step sd"><div class="sn">Done</div><div class="sc"><div class="st">Fully onboarded</div><div class="sb">You are on the NEXA Team plan with existing work intact. The individual account is retired for all NEXA activity.</div></div></div>
+          </div>
+        </div>
+        <div class="path path-b">
+          <div class="path-head">
+            <div class="plabel">Path B</div>
+            <div class="pname">Currently using a personal email account for NEXA work</div>
+            <div class="psub">Requires a @digitalnexa.com account first. Invite issued once IT/Operations confirms readiness.</div>
+          </div>
+          <div class="path-body">
+            <div class="step pb"><div class="sn">Step 1</div><div class="sc"><div class="st">Create @digitalnexa.com account</div><div class="sb">Register a new Claude account at claude.ai using your @digitalnexa.com email if one does not already exist.</div></div></div>
+            <div class="step pb"><div class="sn">Step 2</div><div class="sc"><div class="st">Transfer NEXA work manually</div><div class="sb">Recreate NEXA-related prompts, projects, and custom instructions in the new company account. Chat history cannot transfer — logs remain on the personal account.</div></div></div>
+            <div class="step pb"><div class="sn">Step 3</div><div class="sc"><div class="st">Notify IT/Operations</div><div class="sb">Confirm to IT/Operations that the @digitalnexa.com account is ready. The Team plan invitation is then issued to the company email.</div></div></div>
+            <div class="step pb"><div class="sn">Step 4</div><div class="sc"><div class="st">Accept invite, cease personal account use for NEXA</div><div class="sb">Accept the Team invite. From this point, no NEXA Claude activity may take place on the personal account. Continued use is a breach.</div></div></div>
+            <div class="step sd"><div class="sn">Done</div><div class="sc"><div class="st">Fully onboarded</div><div class="sb">You are on the NEXA Team plan. The personal account may continue for personal use only — no NEXA activity permitted.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="gate">
+        <div class="gl">IT/Operations Checkpoint</div>
+        <div class="gt">For Path B, the Team plan invitation is not issued until IT/Operations confirms the @digitalnexa.com account is active and NEXA work has been transferred.</div>
+        <div class="ge">No exceptions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 + 05 -->
+  <div class="scard">
+    <div class="scard-53">
+      <div>
+        <div class="slabel"><span class="snum">04</span><span class="stitle">Breach &amp; Consequences</span></div>
+        <div class="cq">
+          <div class="cq-head"><div class="cq-title">Consequence Ladder</div><div class="cq-badge">Enforced from first instance</div></div>
+          <div class="cq-intro">Using any personal account for NEXA Claude activity after the migration deadline is a serious policy breach. All breaches are recorded by IT/Operations and escalated to the relevant line manager and HR.</div>
+          <div class="cq-cols">
+            <div class="cq-col"><div class="cq-ct">First breach</div><div class="cq-cb">Formal written warning. Employee must confirm in writing that all NEXA work has ceased on the personal account. Warning retained on record.</div></div>
+            <div class="cq-col"><div class="cq-ct">Repeated breach</div><div class="cq-cb">Escalated to formal HR disciplinary process. May result in termination of employment depending on severity and circumstances.</div></div>
+            <div class="cq-col"><div class="cq-ct">Aggravating factors</div><div class="cq-cb">Breaches involving client data, proprietary methodology, or deliberate circumvention are treated as immediately serious regardless of prior warning history.</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="slabel"><span class="snum">05</span><span class="stitle">Policy Administration</span></div>
+        <div class="adm"><div class="adml">Policy owner</div><div class="admn">IT/Operations</div><div class="admb">Manages Team plan invitations, migration confirmation, breach recording, and annual review. First point of contact for all questions and disputes.</div></div>
+        <div class="adm"><div class="adml">Acknowledgement</div><div class="admn">Required from all employees</div><div class="admb">Distribution does not constitute acknowledgement. Each employee must explicitly confirm they have read and understood this policy. IT/Operations tracks this.</div></div>
+        <div class="adm"><div class="adml">Review cycle</div><div class="admn">Annual or on platform change</div><div class="admb">Reviewed annually, or sooner if NEXA's Claude plan, seat structure, or integrated platform stack changes materially.</div></div>
+        <div class="callout c-teal" style="margin-top:8px;">This policy governs NEXA work only. Employees may maintain personal Claude subscriptions provided there is clear separation from any NEXA client, project, or internal activity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="legend">
+      <div class="leg"><div class="ldot" style="background:var(--teal);"></div>Authorised / compliant</div>
+      <div class="leg"><div class="ldot" style="background:var(--coral);"></div>Non-compliant / breach</div>
+      <div class="leg"><div class="ldot" style="background:var(--red);"></div>Hard requirement</div>
+      <div class="leg"><div class="ldot" style="background:var(--slate);"></div>Administration</div>
+      <div class="leg"><div class="ldot" style="background:var(--ink);"></div>Mandatory gate</div>
+    </div>
+    <div class="footer-logo-wrap"><span class="logo-mark">
+  <svg class="logo-sym" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="#CC785C">
+    <g transform="translate(50,50)">
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(0)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(30)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(60)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(90)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(120)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(150)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(180)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(210)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(240)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(270)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(300)"/>
+      <rect x="-5.5" y="-44" width="11" height="28" rx="4" ry="4" transform="rotate(330)"/>
+    </g>
+  </svg>
+  <span class="logo-text">Claude</span>
+</span></div>
+  </div>
+
+</div>
+</body>
+</html>
